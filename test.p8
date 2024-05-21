@@ -8,7 +8,7 @@ __lua__
 #include ./test/main.lua
 #include ./test/player.lua
 #include ./utilities/log.lua
-#include ./utilities/net.lua
+#include ./utilities/input.lua
 
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
