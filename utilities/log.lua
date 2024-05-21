@@ -1,3 +1,4 @@
-function log(message)
-    print("[LOG] " .. message, "log")
+function log(message, file)
+    file = file or "log"
+    printh(message, file)
 end
