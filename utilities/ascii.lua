@@ -31,7 +31,6 @@ ASCII = {
     RECT = "\128",
     SQR_EMPT = "\18",
     SQR_FILL = "\17",
-    STAR_5 = "\146",
     STAR_THW = "\133",
     TRI_VERT = "\16",
     YEN = "\26",

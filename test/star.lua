@@ -1,14 +1,23 @@
 Star = {}
 Star.__index = Star
 
-function Star.new(x, y, w, h, color)
+function Star.new(x, y)
     local self = setmetatable({}, Star)
+
     self.x = x
     self.y = y
-    self.w = w
-    self.h = h
-    self.color = color
     self.alive = true
+    
+    -- Cheap distance effect
+    self.speed = flr(rnd(3)) + 1
+
+    self.color = COLOR.DRK_GRY
+    if (self.speed == 2) then
+        self.color = COLOR.LGT_GRY
+    elseif (self.speed == 3) then
+        self.color = COLOR.WHT
+    end
+
     return self
 end
 
@@ -17,11 +26,11 @@ function Star:draw()
         return
     end
 
-    print(ASCII.STAR, self.x, self.y, self.color)
+    rectfill(self.x, self.y, self.x, self.y, self.color)
 end
 
 function Star:update()
-    self.y = self.y + 1
+    self.y = self.y + self.speed
 
     if self.y > SCREEN.HEIGHT then
         self.alive = false

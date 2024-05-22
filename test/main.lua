@@ -4,15 +4,14 @@ enemies = {}
 
 function _draw()
     cls()
-    print(ASCII.BIRDS, 84, 84, COLOR.YLW)
-
-    -- Draw the player
-    player:draw()
 
     -- Draw the stars
     for _, star in ipairs(stars) do
         star:draw()
     end
+    
+    -- Draw the player
+    player:draw()
 end
 
 function _update()
@@ -25,14 +24,16 @@ function _update()
         end
         star:update()
     end
+
+    -- Generate new stars
+    if #stars < 5  then
+        add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
+    end
+
+    SCREEN:advanceFrame()
 end
 
 function _init()
     player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - Player.HEIGHT, COLOR.GRN)
 
-    -- add a stars
-    local star1 = Star.new(10, 10, 1, 1, COLOR.WHT)
-    local star2 = Star.new(20, 20, 1, 1, COLOR.YLW)
-    stars = {star1, star2}
-    log('stars: ' .. #stars)
 end
