@@ -1,6 +1,6 @@
 function _draw()
     cls()
-    print(ASCII.VERT_TRI, 84, 84, 7)
+    print(ASCII.BIRDS, 84, 84, COLOR.YLW)
 end
 
 function _update()
