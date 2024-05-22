@@ -11,6 +11,7 @@ __lua__
 #include ./utilities/ascii.lua
 #include ./utilities/cam.lua
 #include ./utilities/screen.lua
+#include ./test/star.lua
 #include ./test/player.lua
 #include ./test/main.lua
 

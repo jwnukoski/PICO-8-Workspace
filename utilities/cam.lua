@@ -13,5 +13,10 @@ CAM = {
         self.x = x
         self.y = y
         camera(self.x, self.y)
+    end,
+
+    -- Check if given x and y are within the camera's view given the screen width and heigh values as well
+    inView = function(self, x, y, w, h)
+        return x + w > self.x and x < self.x + SCREEN.WIDTH and y + h > self.y and y < self.y + SCREEN.HEIGHT
     end
 }
