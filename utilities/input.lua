@@ -1,6 +1,8 @@
-INPUT_LEFT  = 0
-INPUT_RIGHT = 1
-INPUT_UP = 2
-INPUT_DOWN = 3
-INPUT_O = 4
-INPUT_X = 5
+INPUT = {
+    LT = 0,
+    RT = 1,
+    UP = 2,
+    DN = 3,
+    O = 4,
+    X = 5
+}

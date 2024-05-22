@@ -7,4 +7,6 @@ function _update()
 end
 
 function _init()
+    log("BLACK: " .. COLORS.blk)
+    log("DARK BLUE: " .. COLORS.drk_blue)
 end
