@@ -1,4 +1,4 @@
-COLORS = {
+COLOR = {
     blk = 0,
     drk_blu = 1,
     drk_pur = 2,
