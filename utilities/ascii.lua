@@ -1,3 +1,4 @@
+-- Readable ASCII characters for use graphically
 ASCII = {
     ARW_LT = "\22",
     ARW_RT = "\23",

@@ -1,3 +1,4 @@
+-- Readable input indexes
 INPUT = {
     LT = 0,
     RT = 1,

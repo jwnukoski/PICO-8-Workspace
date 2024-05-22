@@ -1,3 +1,4 @@
+-- Readable color indexes
 COLOR = {
     BLK = 0,
     DRK_BLU = 1,
