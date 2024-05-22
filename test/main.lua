@@ -1,6 +1,11 @@
+player = nil
+
 function _draw()
     cls()
     print(ASCII.BIRDS, 84, 84, COLOR.YLW)
+
+    -- Draw the player
+    player:draw()
 end
 
 function _update()
@@ -10,5 +15,5 @@ function _update()
 end
 
 function _init()
-
+    player = Player.new(64, 64, COLOR.GRN)
 end

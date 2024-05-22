@@ -1,4 +1,16 @@
+Player = {}
+Player.__index = Player
 
-function player_draw()
-    circfill(64, 64, 8, 7)
+-- Constructor
+function Player.new(x, y, color)
+    local self = setmetatable({}, Player)
+    self.x = x
+    self.y = y
+    self.color = color
+    return self
+end
+
+-- Method to draw the player
+function Player:draw()
+    circfill(self.x, self.y, 8, self.color)
 end
