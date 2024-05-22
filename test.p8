@@ -5,13 +5,14 @@ __lua__
 -- Run INFO test.p8 to get accurate tokens.
 
 -- Must be in this file. Can't nest.
-#include ./test/main.lua
-#include ./test/player.lua
 #include ./utilities/log.lua
 #include ./utilities/input.lua
 #include ./utilities/color.lua
 #include ./utilities/ascii.lua
 #include ./utilities/cam.lua
+#include ./utilities/screen.lua
+#include ./test/player.lua
+#include ./test/main.lua
 
 __gfx__
 00000000000330009009900900009000000900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

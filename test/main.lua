@@ -1,4 +1,6 @@
 player = nil
+stars = {}
+enemies = {}
 
 function _draw()
     cls()
@@ -9,11 +11,9 @@ function _draw()
 end
 
 function _update()
-    if btn(INPUT.DN) then
-        CAM:move(0, 1)
-    end
+    player:update()
 end
 
 function _init()
-    player = Player.new(64, 64, COLOR.GRN)
+    player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - Player.HEIGHT, COLOR.GRN)
 end
