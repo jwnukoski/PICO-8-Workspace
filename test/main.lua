@@ -4,7 +4,9 @@ function _draw()
 end
 
 function _update()
-
+    if btn(INPUT.DN) then
+        CAM:move(0, 1)
+    end
 end
 
 function _init()
