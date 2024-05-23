@@ -3,7 +3,7 @@ stars = {}
 enemies = {}
 
 function _draw()
-    cls()
+    cls(COLOR.DRK_BLU)
 
     -- Draw the stars
     for _, star in ipairs(stars) do
