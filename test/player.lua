@@ -1,9 +1,9 @@
 Player = {}
 Player.__index = Player
+
 Player.MOVE_SPEED = 2
 Player.WIDTH = 8
 Player.HEIGHT = 8
-
 Player.BOUNDS_RIGHT = SCREEN.WIDTH - Player.WIDTH
 Player.BOUNDS_BOTTOM = SCREEN.HEIGHT - Player.HEIGHT
 
@@ -13,6 +13,8 @@ function Player.new(x, y, color)
     self.x = x
     self.y = y
     self.color = color
+
+
     return self
 end
 
