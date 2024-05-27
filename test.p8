@@ -11,12 +11,15 @@ __lua__
 #include ./utilities/ascii.lua
 #include ./utilities/cam.lua
 #include ./utilities/screen.lua
+#include ./test/collidable.lua
 #include ./test/star.lua
 #include ./test/meteor.lua
 #include ./test/player.lua
-#include ./test/main.lua
 #include ./test/explosion.lua
 #include ./test/menu-health.lua
+#include ./test/menu-weapon.lua
+#include ./test/menu-time.lua
+#include ./test/main.lua
 
 __gfx__
 00000000000330000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

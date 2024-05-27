@@ -1,27 +1,33 @@
 Player = {}
 Player.__index = Player
 
-Player.MOVE_SPEED = 2
-Player.WIDTH = 8
-Player.HEIGHT = 8
-Player.BOUNDS_RIGHT = SCREEN.WIDTH - Player.WIDTH
-Player.BOUNDS_BOTTOM = SCREEN.HEIGHT - Player.HEIGHT
-
 -- Constructor
-function Player.new(x, y, color)
+function Player.new(x, y)
     local self = setmetatable({}, Player)
 
     self.x = x
     self.y = y
-    self.color = color
+    self.w = 8
+    self.h = 8
+    
+    self.MOVE_SPEED = 2
+    self.BOUNDS_RIGHT = SCREEN.WIDTH - self.w
+    self.BOUNDS_BOTTOM = SCREEN.HEIGHT - self.h
+    
     self.health = 4
     self.alive = true
+    self.weapon = 1
+
+    self.colSize = 1
+    self.colPad = 3
+    self.col = Collidable.new(self.x + self.colPad, self.y + self.colPad, self.colSize, self.colSize, true)
 
     return self
 end
 
 function Player:update()
     self:movement()
+    self.col:setPos(self.x + self.colPad, self.y + self.colPad)
 end
 
 function Player:explode()
@@ -81,6 +87,8 @@ function Player:draw()
     end
 
     spr(1, self.x, self.y, 1, 1, false, false)
+    
+    self.col:draw()
 end
 
 function Player:move(x, y)

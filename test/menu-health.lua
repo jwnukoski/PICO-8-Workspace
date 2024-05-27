@@ -1,7 +1,7 @@
 MenuHealth = {}
 MenuHealth.__index = MenuHealth
 MenuHealth.X = 0
-MenuHealth.Y = SCREEN.HEIGHT - 5
+MenuHealth.Y = SCREEN.HEIGHT
 
 -- Constructor
 function MenuHealth.new()
@@ -13,12 +13,15 @@ function MenuHealth.new()
 end
 
 function MenuHealth:draw()
-    -- draw amount of hearts bas
+    if not player.alive then
+        return
+    end
+    
     print(self.text, self.X, self.Y, COLOR.RED)      
 end
 
 function MenuHealth:update()
-    if #self.text == player.health then
+    if (#self.text == player.health) or (not player.alive) then
         return
     end
 

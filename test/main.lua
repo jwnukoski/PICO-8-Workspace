@@ -7,7 +7,7 @@ explosions = {}
 menu = {}
 
 function _draw()
-    cls()
+    cls(COLOR.DRK_BLU)
 
     -- Draw the stars
     for _, star in ipairs(stars) do
@@ -35,6 +35,7 @@ function _draw()
     end
 
     -- Draw the menu
+    rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK) -- keep here? just background for menu
     for _, menu in ipairs(menu) do
         menu:draw()
     end
@@ -74,7 +75,7 @@ function _update()
 
     -- Generate new meteors
     if #meteors < 1  then
-        add(meteors, Meteor.new(rnd(SCREEN.WIDTH), 0))
+        add(meteors, Meteor.new(rnd(SCREEN.WIDTH), -16))
     end
 
     -- Update collisions
@@ -111,6 +112,8 @@ function _update()
 end
 
 function _init()
-    player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - Player.HEIGHT, COLOR.GRN)
+    player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
     add(menu, MenuHealth.new())
+    add(menu, MenuWeapon.new())
+    add(menu, MenuTime.new())
 end
