@@ -8,7 +8,7 @@ bullets = {}
 menu = {}
 
 function _draw()
-    cls(COLOR.DRK_BLU)
+    cls()
 
     -- Draw the stars
     for _, star in ipairs(stars) do

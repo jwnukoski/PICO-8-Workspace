@@ -3,8 +3,6 @@ version 42
 __lua__
 
 -- Run INFO test.p8 to get accurate tokens.
-
--- Must be in this file. Can't nest.
 #include ./utilities/log.lua
 #include ./utilities/input.lua
 #include ./utilities/color.lua
@@ -14,9 +12,10 @@ __lua__
 #include ./test/collidable.lua
 #include ./test/bullet.lua
 #include ./test/star.lua
+#include ./test/explosion.lua
 #include ./test/meteor.lua
 #include ./test/player.lua
-#include ./test/explosion.lua
+#include ./test/enemy.lua
 #include ./test/menu-health.lua
 #include ./test/menu-weapon.lua
 #include ./test/menu-time.lua
