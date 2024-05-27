@@ -48,7 +48,7 @@ function Meteor:update()
     self.y = self.y + self.speed
 
     if self.y > SCREEN.HEIGHT then
-        self.alive = false
+        self:kill()
     end
 
     self.col:setPos(self.x + self.colPad, self.y + self.colPad)

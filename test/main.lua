@@ -44,6 +44,10 @@ end
 function _update()
     player:update()
 
+    if not player.alive then
+        return
+    end
+
     -- Update the stars
     for _, star in ipairs(stars) do
         if not star.alive then
