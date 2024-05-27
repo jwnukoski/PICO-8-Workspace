@@ -152,6 +152,7 @@ function Player:shootWeaponType()
         add(bullets, Bullet.new(self.x + 3, self.y - 8, 2, -2, true))
     end
     
+    sfx(1)
 
     self.canShoot = false
 end
