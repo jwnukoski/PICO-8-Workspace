@@ -70,6 +70,8 @@ function Player:shooting()
 end
 
 function Player:upgradeWeapon()
+    -- Upgrade event. Sets delays.
+
     if self.weapon < 10 then
         self.weapon = self.weapon + 1
         self.shootTimer = 0
@@ -93,19 +95,19 @@ function Player:upgradeWeapon()
     end
 
     if self.weapon == 5 then
-        self.shootDelay = 8
-    end
-
-    if self.weapon == 6 then
         self.shootDelay = 4
     end
 
+    if self.weapon == 6 then
+        self.shootDelay = 10
+    end
+
     if self.weapon == 7 then
-        self.shootDelay = 15
+        self.shootDelay = 7
     end
 
     if self.weapon == 8 then
-        self.shootDelay = 10
+        self.shootDelay = 4
     end
 
     if self.weapon == 9 then
@@ -115,41 +117,79 @@ function Player:upgradeWeapon()
     if self.weapon == 10 then
         self.shootDelay = 4
     end
+
+    sfx(3)
 end
 
 function Player:shootWeaponType()
-    -- Bullet patterns... reuse for enemies?
+    -- Spawn bullet patterns
     if self.weapon == 1 then
+        -- 1 centered
         add(bullets, Bullet.new(self.x + 3, self.y, 0, -2, true))
     end
 
     if self.weapon == 2 then
+        -- 1 centered
         add(bullets, Bullet.new(self.x + 3, self.y, 0, -3, true))
     end
 
     if self.weapon == 3 then
+        -- 1 centered
         add(bullets, Bullet.new(self.x + 3, self.y, 0, -4, true))
     end
 
     if self.weapon == 4 then
+        -- 2 centered
         add(bullets, Bullet.new(self.x + 6, self.y, 0, -2, true))
         add(bullets, Bullet.new(self.x, self.y, 0, -2, true))
     end
 
     if self.weapon == 5 then
+        -- 2 centered
         add(bullets, Bullet.new(self.x + 6, self.y, 0, -3, true))
         add(bullets, Bullet.new(self.x, self.y, 0, -3, true))
     end
 
     if self.weapon == 6 then
-        add(bullets, Bullet.new(self.x + 6, self.y, 0, -4, true))
-        add(bullets, Bullet.new(self.x, self.y, 0, -4, true))
+        -- 3 split
+        add(bullets, Bullet.new(self.x, self.y, -2, -2, true))
+        add(bullets, Bullet.new(self.x + 3, self.y, 0, -2, true))
+        add(bullets, Bullet.new(self.x + 6, self.y, 2, -2, true))
     end
 
     if self.weapon == 7 then
-        add(bullets, Bullet.new(self.x + 3, self.y - 8, 0, -2, true))
-        add(bullets, Bullet.new(self.x + 3, self.y - 8, -2, -2, true))
-        add(bullets, Bullet.new(self.x + 3, self.y - 8, 2, -2, true))
+        -- 3 split
+        add(bullets, Bullet.new(self.x, self.y, -3, -3, true))
+        add(bullets, Bullet.new(self.x + 3, self.y, 0, -3, true))
+        add(bullets, Bullet.new(self.x + 6, self.y, 3, -3, true))
+    end
+
+    if self.weapon == 8 then
+         -- 3 split
+         add(bullets, Bullet.new(self.x, self.y, -4, -4, true))
+         add(bullets, Bullet.new(self.x + 3, self.y, 0, -4, true))
+         add(bullets, Bullet.new(self.x + 6, self.y, 4, -4, true))
+    end
+
+    if self.weapon == 9 then
+        -- 3 split, 2 centered
+        add(bullets, Bullet.new(self.x, self.y, -2, -2, true))
+
+        add(bullets, Bullet.new(self.x, self.y, 0, -2, true))
+         add(bullets, Bullet.new(self.x + 6, self.y, 0, -2, true))
+
+         add(bullets, Bullet.new(self.x + 6, self.y, 2, -2, true))
+    end
+
+    if self.weapon == 10 then
+        -- 3 split, 2 centered
+        add(bullets, Bullet.new(self.x, self.y, -4, -4, true))
+        
+        add(bullets, Bullet.new(self.x, self.y, 0, -4, true))
+        add(bullets, Bullet.new(self.x + 6, self.y, 0, -4, true))
+
+        add(bullets, Bullet.new(self.x + 6, self.y, 4, -4, true))
+        add(bullets, Bullet.new(self.x + 6, self.y, 0, -4, true))
     end
     
     sfx(1)
@@ -162,6 +202,7 @@ function Player:explode()
 end
 
 function Player:damage()
+    -- Takes 1 health away
     if not self.alive then
         return
     end
@@ -175,6 +216,7 @@ function Player:damage()
 end
 
 function Player:movement()
+    -- Main movement function
     local xAmount = 0
     local yAmount = 0
 
@@ -207,8 +249,8 @@ function Player:movement()
     end
 end
 
--- Method to draw the player
 function Player:draw()
+    -- Method to draw the player
     if not self.alive then
         return
     end
