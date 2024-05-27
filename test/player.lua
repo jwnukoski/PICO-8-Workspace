@@ -1,5 +1,6 @@
 Player = {}
 Player.__index = Player
+Player.MAX_HEALTH = 4
 
 -- Constructor
 function Player.new(x, y)
@@ -14,7 +15,7 @@ function Player.new(x, y)
     self.BOUNDS_RIGHT = SCREEN.WIDTH - self.w
     self.BOUNDS_BOTTOM = SCREEN.HEIGHT - self.h
     
-    self.health = 4
+    self.health = Player.MAX_HEALTH
     self.alive = true
     
     self.colSize = 1
@@ -26,6 +27,16 @@ function Player.new(x, y)
     self.shootTimer = 0
 
     return self
+end
+
+function Player:upgrade()
+    self:upgradeWeapon()
+    self:heal()
+    sfx(3)
+end
+
+function Player:heal()
+    self.health = Player.MAX_HEALTH
 end
 
 function Player:update()
@@ -117,8 +128,6 @@ function Player:upgradeWeapon()
     if self.weapon == 10 then
         self.shootDelay = 4
     end
-
-    sfx(3)
 end
 
 function Player:shootWeaponType()

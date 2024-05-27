@@ -6,6 +6,7 @@ collidables = {}
 explosions = {}
 bullets = {}
 menu = {}
+upgrades = {}
 
 function _draw()
     cls()
@@ -38,6 +39,11 @@ function _draw()
     -- Draw explosions
     for _, explosion in ipairs(explosions) do
         explosion:draw()
+    end
+
+    -- Draw upgrades
+    for _, upgrade in ipairs(upgrades) do
+        upgrade:draw()
     end
 
     -- Draw the menu
@@ -88,6 +94,11 @@ function _update()
         add(meteors, Meteor.new(rnd(SCREEN.WIDTH), -16))
     end
 
+    -- Generate new upgrades
+    if #upgrades < 1  then
+        add(upgrades, Upgrade.new(rnd(SCREEN.WIDTH), -16))
+    end
+
     -- Update collisions
     for _, collidable in ipairs(collidables) do
         if not collidable.alive then
@@ -121,6 +132,18 @@ function _update()
         end
 
         explosion:update()
+
+        ::continue::
+    end
+
+    -- Update upgrades
+    for _, upgrade in ipairs(upgrades) do
+        if not upgrade.alive then
+            del(upgrades, upgrade)
+            goto continue
+        end
+
+        upgrade:update()
 
         ::continue::
     end
