@@ -10,16 +10,35 @@ Player.BOUNDS_BOTTOM = SCREEN.HEIGHT - Player.HEIGHT
 -- Constructor
 function Player.new(x, y, color)
     local self = setmetatable({}, Player)
+
     self.x = x
     self.y = y
     self.color = color
-
+    self.health = 4
+    self.alive = true
 
     return self
 end
 
 function Player:update()
     self:movement()
+end
+
+function Player:explode()
+    add(explosions, Explosion.new(self.x, self.y, 1, 1))
+end
+
+function Player:damage()
+    if not self.alive then
+        return
+    end
+
+    self.health = self.health - 1
+    self:explode()
+
+    if self.health == 0 then
+        self.alive = false
+    end
 end
 
 function Player:movement()
@@ -57,10 +76,18 @@ end
 
 -- Method to draw the player
 function Player:draw()
+    if not self.alive then
+        return
+    end
+
     spr(1, self.x, self.y, 1, 1, false, false)
 end
 
 function Player:move(x, y)
+    if not self.alive then
+        return
+    end
+
     self.x = self.x + x
     self.y = self.y + y
 end

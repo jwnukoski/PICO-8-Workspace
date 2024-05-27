@@ -2,7 +2,7 @@ Collidable = {}
 Collidable.__index = Collidable
 
 -- Constructor
-function Collidable.new(parent, xOffset, yOffset, w, h, visible)
+function Collidable.new(x, y, w, h, visible)
     local self = setmetatable({}, Player)
 
     self.x = x
@@ -15,17 +15,27 @@ function Collidable.new(parent, xOffset, yOffset, w, h, visible)
     return self
 end
 
-function Collidable:update()
-    if (not self.alive) then
-        return
+-- Method to check if the collidable instance collides with another instance. Accepts as callback on collision.
+function Collidable:collidesWith(other, callback)
+    if (not self.alive) or (not other.alive) then
+        return false
     end
 
-    
+    local collided = self.x >= (other.x + other.w) and
+        (self.x + self.w) <= other.x and
+        self.y >= (other.y + other.h) and
+        (self.y + self.h) <= other.y
+
+    if collided then
+        callback()
+    end
+
+    return collided
 end
 
-
 function Collidable:draw()
-    if (not self.visible) then
+    -- Debug purposes only
+    if (not self.visible) or (not self.alive) then
         return
     end
 

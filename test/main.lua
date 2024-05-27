@@ -4,6 +4,7 @@ meteors = {}
 enemies = {}
 collidables = {}
 explosions = {}
+menu = {}
 
 function _draw()
     cls()
@@ -12,15 +13,10 @@ function _draw()
     for _, star in ipairs(stars) do
         star:draw()
     end
-    
+
     -- Draw the meteors
     for _, meteor in ipairs(meteors) do
         meteor:draw()
-    end
-    
-    -- Draw explosions
-    for _, explosion in ipairs(explosions) do
-        explosion:draw()
     end
 
     -- Draw the player
@@ -28,7 +24,19 @@ function _draw()
 
     -- Debug only
     for _, collidable in ipairs(collidables) do
-        collidable:draw()
+        if collidable.visible and collidable.alive then
+            collidable:draw()
+        end
+    end
+
+    -- Draw explosions
+    for _, explosion in ipairs(explosions) do
+        explosion:draw()
+    end
+
+    -- Draw the menu
+    for _, menu in ipairs(menu) do
+        menu:draw()
     end
 end
 
@@ -69,13 +77,15 @@ function _update()
         add(meteors, Meteor.new(rnd(SCREEN.WIDTH), 0))
     end
 
-    -- Check collisions
+    -- Update collisions
     for _, collidable in ipairs(collidables) do
         if not collidable.alive then
             del(collidables, collidable)
             -- continue loop
             goto continue
         end
+
+        collidable:update()
 
         ::continue::
     end
@@ -92,8 +102,9 @@ function _update()
         ::continue::
     end
 
-    if (SCREEN.frameInFPS == 0) then
-        add(explosions, Explosion.new(rnd(SCREEN.WIDTH), rnd(SCREEN.HEIGHT), 1, 1))
+    -- Update the menu
+    for _, menu in ipairs(menu) do
+        menu:update()
     end
 
     SCREEN:advanceFrame()
@@ -101,4 +112,5 @@ end
 
 function _init()
     player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - Player.HEIGHT, COLOR.GRN)
+    add(menu, MenuHealth.new())
 end
