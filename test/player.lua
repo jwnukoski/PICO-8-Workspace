@@ -20,7 +20,7 @@ function Player.new(x, y)
 
     self.colSize = 1
     self.colPad = 3
-    self.col = Collidable.new(self.x + self.colPad, self.y + self.colPad, self.colSize, self.colSize, true)
+    self.col = Collidable.new(self.x + self.colPad, self.y + self.colPad, self.colSize, self.colSize, false)
 
     return self
 end
