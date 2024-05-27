@@ -12,6 +12,7 @@ __lua__
 #include ./utilities/cam.lua
 #include ./utilities/screen.lua
 #include ./test/collidable.lua
+#include ./test/bullet.lua
 #include ./test/star.lua
 #include ./test/meteor.lua
 #include ./test/player.lua

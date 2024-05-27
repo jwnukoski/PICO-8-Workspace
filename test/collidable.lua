@@ -36,7 +36,6 @@ function Collidable:collidesWith(other, callback)
         (self.y + self.h) > other.y
 
     if collided then
-        log("Collided")
         callback()
     end
 

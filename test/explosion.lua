@@ -30,8 +30,6 @@ function Explosion:update()
     if (self.frame == 1) then
         sfx(0)
     end
-
-    log("Explosion frame: " .. self.frame)
 end
 
 

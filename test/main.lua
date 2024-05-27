@@ -4,6 +4,7 @@ meteors = {}
 enemies = {}
 collidables = {}
 explosions = {}
+bullets = {}
 menu = {}
 
 function _draw()
@@ -27,6 +28,11 @@ function _draw()
         if collidable.visible and collidable.alive then
             collidable:draw()
         end
+    end
+
+    -- Draw the bullets
+    for _, bullet in ipairs(bullets) do
+        bullet:draw()
     end
 
     -- Draw explosions
@@ -91,6 +97,18 @@ function _update()
         end
 
         collidable:update()
+
+        ::continue::
+    end
+
+    -- Update bullets
+    for _, bullet in ipairs(bullets) do
+        if not bullet.alive then
+            del(bullets, bullet)
+            goto continue
+        end
+
+        bullet:update()
 
         ::continue::
     end
