@@ -23,7 +23,7 @@ function Meteor.new(x, y)
         self.spriteSize = 2
     end
 
-    self.col = Collidable.new(self.x, self.y, self.colSize, self.colSize, true)
+    self.col = Collidable.new(self.x, self.y, self.colSize, self.colSize)
 
     return self
 end
@@ -59,7 +59,7 @@ end
 
 function Meteor:explode()
     if self.colSize ~= 8 then
-        local offset = self.colSize / 4
+        local offset = self.colSize / 3
         add(explosions, Explosion.new(self.x + offset, self.y + offset, 1, 1))
     else
         add(explosions, Explosion.new(self.x, self.y, 1, 1))

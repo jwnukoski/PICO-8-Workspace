@@ -17,7 +17,7 @@ function Bullet.new(x, y, xAmt, yAmt, isPlayer)
         self.color = COLOR.GRN
     end
 
-    self.col = Collidable.new(self.x, self.y, 1, 1, true)
+    self.col = Collidable.new(self.x, self.y, 1, 1)
 
     return self
 end
