@@ -41,7 +41,7 @@ function Enemy:draw()
 end
 
 function Enemy:explode()
-    add(explosions, Explosion.new(self.x, self.y, 1, 1))
+    add(explosions, Explosion.new(self.x, self.y))
 end
 
 function Enemy:kill()

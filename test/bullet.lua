@@ -54,6 +54,13 @@ function Bullet:update()
             self.alive = false
         end)
     end
+
+    for i, enemy in pairs(enemies) do
+        self.col:collidesWith(enemy.col, function()
+            enemy:hurt()
+            self.alive = false
+        end)
+    end
     -- if self.isPlayer then
         -- Meteors. TODO: fix into 1 group of all enemies
     -- end

@@ -2,13 +2,11 @@ Explosion = {}
 Explosion.__index = Explosion
 Explosion.FRAMES = {192, 192, 192, 192, 193, 193, 194, 195}
 
-function Explosion.new(x, y, w, h)
+function Explosion.new(x, y)
     local self = setmetatable({}, Explosion)
 
     self.x = x
     self.y = y
-    self.w = w
-    self.h = h
     self.alive = true
     self.frame = 0
 

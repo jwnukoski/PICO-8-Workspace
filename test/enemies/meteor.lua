@@ -4,9 +4,8 @@ Meteor.__index = Meteor
 function Meteor.new(x, y)
     local self = setmetatable({}, Meteor)
 
-    self.x = x
-    self.y = y
     self.alive = true
+    self.health = 1
 
     self.flipX = rnd(2) > 1
     self.flipY = rnd(2) > 1
@@ -29,20 +28,10 @@ function Meteor.new(x, y)
 end
 
 function Meteor:draw()
-    if not self.alive then
-        return
-    end
-
     spr(self.spriteIndex, self.x, self.y, self.spriteSize, self.spriteSize, false, false)
-
-    self.col:draw()
 end
 
 function Meteor:update()
-    if not self.alive then
-        return
-    end
-
     self.y = self.y + self.speed
 
     if self.y > SCREEN.HEIGHT then
@@ -64,7 +53,7 @@ function Meteor:explode()
     else
         add(explosions, Explosion.new(self.x, self.y))
     end
-
+    
     self:kill()
 end
 
