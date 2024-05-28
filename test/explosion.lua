@@ -1,6 +1,5 @@
 Explosion = {}
 Explosion.__index = Explosion
-
 Explosion.FRAMES = {192, 192, 192, 192, 193, 193, 194, 195}
 
 function Explosion.new(x, y, w, h)

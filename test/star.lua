@@ -30,6 +30,10 @@ function Star:draw()
 end
 
 function Star:update()
+    if not self.alive then
+        return
+    end
+
     self.y = self.y + self.speed
 
     if self.y > SCREEN.HEIGHT then

@@ -12,20 +12,18 @@ function Meteor.new(x, y)
     self.flipY = rnd(2) > 1
 
     self.speed = flr(rnd(3)) + 1
-    self.colSize = 4
+    self.colSize = 8
     self.spriteIndex = 64
     self.spriteSize = 1
 
     -- Larger
     if self.speed == 3 then
-        self.colSize = 8
+        self.colSize = 16
         self.spriteIndex = 65
         self.spriteSize = 2
     end
 
-    self.colPad = (self.colSize / 2)
-
-    self.col = Collidable.new(self.x + self.colPad, self.y + self.colPad, self.colSize, self.colSize)
+    self.col = Collidable.new(self.x, self.y, self.colSize, self.colSize, true)
 
     return self
 end
@@ -51,7 +49,7 @@ function Meteor:update()
         self:kill()
     end
 
-    self.col:setPos(self.x + self.colPad, self.y + self.colPad)
+    self.col:setPos(self.x, self.y)
     self.col:collidesWith(player.col, function()
         player:damage()
         self:explode()
@@ -60,11 +58,17 @@ function Meteor:update()
 end
 
 function Meteor:explode()
-    add(explosions, Explosion.new(self.x, self.y, 1, 1))
+    if self.colSize ~= 8 then
+        local offset = self.colSize / 4
+        add(explosions, Explosion.new(self.x + offset, self.y + offset, 1, 1))
+    else
+        add(explosions, Explosion.new(self.x, self.y, 1, 1))
+    end
+    
+    self:kill()
 end
 
 function Meteor:kill()
     self.col:kill()
     self.alive = false
-    self.visible = false
 end

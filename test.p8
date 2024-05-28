@@ -17,9 +17,9 @@ __lua__
 #include ./test/meteor.lua
 #include ./test/player.lua
 #include ./test/enemy.lua
-#include ./test/menu-health.lua
-#include ./test/menu-weapon.lua
-#include ./test/menu-time.lua
+#include ./test/menus/health.lua
+#include ./test/menus/weapon.lua
+#include ./test/menus/time.lua
 #include ./test/main.lua
 
 __gfx__

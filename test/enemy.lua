@@ -1,7 +1,7 @@
 Enemy = {}
 Enemy.__index = Enemy
 
-function Enemy.new(x, y, w, h)
+function Enemy.new(x, y, enemyType)
     local self = setmetatable({}, Explosion)
 
     self.x = x

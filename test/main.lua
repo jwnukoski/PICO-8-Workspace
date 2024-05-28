@@ -62,26 +62,12 @@ function _update()
 
     -- Update the stars
     for _, star in ipairs(stars) do
-        if not star.alive then
-            del(stars, star) -- costly?
-            goto continue
-        end
-
         star:update()
-
-        ::continue::
     end
 
     -- Update the meteors
     for _, meteor in ipairs(meteors) do
-        if not meteor.alive then
-            del(meteors, meteor)
-            goto continue
-        end
-
         meteor:update()
-
-        ::continue::
     end
 
     -- Generate new stars
@@ -94,64 +80,32 @@ function _update()
         add(meteors, Meteor.new(rnd(SCREEN.WIDTH), -16))
     end
 
-    -- Generate new upgrades
-    if #upgrades < 1  then
-        add(upgrades, Upgrade.new(rnd(SCREEN.WIDTH), -16))
-    end
-
     -- Update collisions
     for _, collidable in ipairs(collidables) do
-        if not collidable.alive then
-            del(collidables, collidable)
-            -- continue loop
-            goto continue
-        end
-
         collidable:update()
-
-        ::continue::
     end
 
     -- Update bullets
     for _, bullet in ipairs(bullets) do
-        if not bullet.alive then
-            del(bullets, bullet)
-            goto continue
-        end
-
         bullet:update()
-
-        ::continue::
     end
 
     -- Update explosions
     for _, explosion in ipairs(explosions) do
-        if not explosion.alive then
-            del(explosions, explosion)
-            goto continue
-        end
-
         explosion:update()
-
-        ::continue::
     end
 
     -- Update upgrades
     for _, upgrade in ipairs(upgrades) do
-        if not upgrade.alive then
-            del(upgrades, upgrade)
-            goto continue
-        end
-
         upgrade:update()
-
-        ::continue::
     end
 
     -- Update the menu
     for _, menu in ipairs(menu) do
         menu:update()
     end
+
+    garbarge()
 
     SCREEN:advanceFrame()
 end
@@ -161,4 +115,53 @@ function _init()
     add(menu, MenuHealth.new())
     add(menu, MenuWeapon.new())
     add(menu, MenuTime.new())
+end
+
+function garbarge()
+    -- Infrequent garbarge collection
+    if (SCREEN.frameInFPS ~= 15) and (SCREEN.frameInFPS ~= 30) then
+        return
+    end
+
+    -- Stars
+    for _, star in ipairs(stars) do
+        if not star.alive then
+            del(stars, star)
+        end
+    end
+
+    -- Meteors
+    for _, meteor in ipairs(meteors) do
+        if not meteor.alive then
+            del(meteors, meteor)
+        end
+    end
+
+    -- Collisions
+    for _, collidable in ipairs(collidables) do
+        if not collidable.alive then
+            del(collidables, collidable)
+        end
+    end
+
+    -- Bullets
+    for _, bullet in ipairs(bullets) do
+        if not bullet.alive then
+            del(bullets, bullet)
+        end
+    end
+
+    -- Explosions
+    for _, explosion in ipairs(explosions) do
+        if not explosion.alive then
+            del(explosions, explosion)
+        end
+    end
+
+    -- Upgrades
+    for _, upgrade in ipairs(upgrades) do
+        if not upgrade.alive then
+            del(upgrades, upgrade)
+        end
+    end
 end
