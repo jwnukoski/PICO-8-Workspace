@@ -6,11 +6,10 @@ function Enemy.new(x, y, child)
 
     self.x = x
     self.y = y
-    self.alive = true
     self.child = child
+    self.alive = true
 
-    -- defaults. accordingly in enemy type
-    self.col = Collidable.new(self.x, self.y, self.child.w, self.child.h, false)
+    self.col = Collidable.new(self.x, self.y, 8, 8, true)
 
     return self
 end
@@ -39,6 +38,16 @@ function Enemy:hurt()
     if (self.child.health <= 0) then
         self:kill(true)
     end
+end
+
+function Enemy:setPos(x, y)
+    if (not self.alive) then
+        return
+    end
+
+    self.x = x
+    self.y = y
+    self.col:setPos(self.x, self.y)
 end
 
 function Enemy:explode()
