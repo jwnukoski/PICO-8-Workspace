@@ -12,6 +12,8 @@ function Collidable.new(x, y, w, h, visible)
     self.visible = visible or false
     self.alive = true
 
+    add(collidables, self)
+
     return self
 end
 

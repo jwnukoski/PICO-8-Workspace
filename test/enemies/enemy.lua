@@ -1,5 +1,6 @@
 Enemy = {}
 Enemy.__index = Enemy
+Enemy.debugCol = true
 
 function Enemy.new(x, y, child)
     local self = setmetatable({}, Enemy)
@@ -9,7 +10,9 @@ function Enemy.new(x, y, child)
     self.child = child
     self.alive = true
 
-    self.col = Collidable.new(self.x, self.y, 8, 8, true)
+    self.col = Collidable.new(self.x, self.y, 8, 8, Enemy.debugCol)
+
+    add(enemies, self)
 
     return self
 end
@@ -52,7 +55,7 @@ end
 
 function Enemy:explode()
     local offset = self.child.w / 3
-    add(explosions, Explosion.new(self.child.x + offset, self.enemyType.y + offset))
+    add(explosions, Explosion.new(self.x + offset, self.y + offset))
 end
 
 

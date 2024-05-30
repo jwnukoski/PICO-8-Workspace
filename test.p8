@@ -14,9 +14,9 @@ __lua__
 #include ./test/upgrade.lua
 #include ./test/star.lua
 #include ./test/explosion.lua
-#include ./test/meteor.lua
+#include ./test/enemies/meteor.lua
+#include ./test/enemies/enemy.lua
 #include ./test/player.lua
-#include ./test/enemy.lua
 #include ./test/menus/health.lua
 #include ./test/menus/weapon.lua
 #include ./test/menus/time.lua

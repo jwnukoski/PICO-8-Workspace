@@ -1,6 +1,5 @@
 player = nil
 stars = {}
-meteors = {}
 enemies = {}
 collidables = {}
 explosions = {}
@@ -16,9 +15,9 @@ function _draw()
         star:draw()
     end
 
-    -- Draw the meteors
-    for _, meteor in ipairs(meteors) do
-        meteor:draw()
+    -- Draw the enemies
+    for _, enemy in ipairs(enemies) do
+        enemy:draw()
     end
 
     -- Draw the player
@@ -65,9 +64,9 @@ function _update()
         star:update()
     end
 
-    -- Update the meteors
-    for _, meteor in ipairs(meteors) do
-        meteor:update()
+    -- Update the enemies
+    for _, enemy in ipairs(enemies) do
+        enemy:update()
     end
 
     -- Generate new stars
@@ -75,14 +74,9 @@ function _update()
         add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
     end
 
-    -- Generate new meteors
-    if #meteors < 1  then
-        add(meteors, Meteor.new(rnd(SCREEN.WIDTH), -16))
-    end
-
-    -- Update collisions
-    for _, collidable in ipairs(collidables) do
-        collidable:update()
+    -- Generate new enemies for test
+    if #enemies < 1  then
+        Meteor.new(rnd(SCREEN.WIDTH), -16)
     end
 
     -- Update bullets
@@ -130,10 +124,10 @@ function garbarge()
         end
     end
 
-    -- Meteors
-    for _, meteor in ipairs(meteors) do
-        if not meteor.alive then
-            del(meteors, meteor)
+    -- enemies
+    for _, enemy in ipairs(enemies) do
+        if not enemy.alive then
+            del(enemies, enemy)
         end
     end
 
