@@ -1,10 +1,10 @@
 Meteor = {}
 Meteor.__index = Meteor
 
-function Meteor.new(x, y)
+function Meteor.new(x, y, health)
     local self = setmetatable({}, Meteor)
     self.parent = Enemy.new(x, y, self)
-    self.health = 5
+    self.health = health
     self.w = 8
 
     self.flipX = rnd(2) > 1

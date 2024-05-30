@@ -64,11 +64,6 @@ function _update()
         star:update()
     end
 
-    -- Update the enemies
-    for _, enemy in ipairs(enemies) do
-        enemy:update()
-    end
-
     -- Generate new stars
     if #stars < 5  then
         add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
@@ -76,7 +71,12 @@ function _update()
 
     -- Generate new enemies for test
     if #enemies < 1  then
-        Meteor.new(rnd(SCREEN.WIDTH), -16)
+        Meteor.new(rnd(SCREEN.WIDTH), -16, 5)
+    end
+
+    -- Update the enemies
+    for _, enemy in ipairs(enemies) do
+        enemy:update()
     end
 
     -- Update bullets
