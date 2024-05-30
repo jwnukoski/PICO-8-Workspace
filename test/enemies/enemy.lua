@@ -53,7 +53,7 @@ function Enemy:hurt(fromPlayer)
     self.child.health = self.child.health - 1
 
     if (self.child.health <= 0) then
-        self:kill(true)
+        self:kill(fromPlayer)
     end
 end
 

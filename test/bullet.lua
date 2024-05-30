@@ -51,4 +51,5 @@ end
 
 function Bullet:kill()
     self.alive = false
+    self.col:kill()
 end

@@ -4,13 +4,13 @@ Meteor.__index = Meteor
 function Meteor.new(x, y)
     local self = setmetatable({}, Meteor)
     self.parent = Enemy.new(x, y, self)
-    self.health = 1
+    self.health = 5
+    self.w = 8
 
     self.flipX = rnd(2) > 1
     self.flipY = rnd(2) > 1
 
     self.speed = flr(rnd(3)) + 1
-    self.w = 8
     self.spriteIndex = 64
     self.spriteSize = 1
 
@@ -21,6 +21,7 @@ function Meteor.new(x, y)
         self.spriteSize = 2
     end
 
+    -- Set collision size
     self.parent.col.w = self.w
     self.parent.col.h = self.w
 
