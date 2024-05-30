@@ -70,9 +70,9 @@ function _update()
     end
 
     -- Generate new enemies for test
-    if #enemies < 1  then
-        -- Meteor.new(rnd(SCREEN.WIDTH), -16, 5)
-        SmallShip.new(rnd(SCREEN.WIDTH), -16, 5)
+    if #enemies < 5  then
+        Meteor.new(rnd(SCREEN.WIDTH), -16, 5)
+        SmallShip.new(rnd(SCREEN.WIDTH), -16, 5, SCREEN.HEIGHT / rnd(4))
     end
 
     -- Update the enemies
