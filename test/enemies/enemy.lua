@@ -22,7 +22,7 @@ function Enemy:update()
     end
 
     -- offscreen
-    if (self.y > SCREEN.HEIGHT) then
+    if (self.y > SCREEN.HEIGHT or self.x > SCREEN.WIDTH or self.x < 0) then
         self:kill(false)
     end
 

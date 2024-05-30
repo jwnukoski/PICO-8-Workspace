@@ -15,6 +15,9 @@ function SmallShip.new(x, y, health, stopPointY)
     
     self.stopPointY = stopPointY
 
+    self.shotsTaken = 0
+    self.shotsAllowed = 5
+
     return self
 end
 
@@ -30,11 +33,24 @@ function SmallShip:update()
     end
 
     -- shoots when in position
-    if SCREEN.frameInFPS == 0 then
+    if self.shotsTaken < self.shotsAllowed then
+        if SCREEN.frameInFPS == 0 then
+            -- shoot pattern
+            add(bullets, Bullet.new(self.parent.x, self.parent.y + 2, -1, 2, false))
+            add(bullets, Bullet.new(self.parent.x, self.parent.y + 2, 1, 2, false))
+            self.shotsTaken = self.shotsTaken + 1
+            return
+        end
 
-        add(bullets, Bullet.new(self.parent.x, self.parent.y + 8, -1, 2, false))
-        add(bullets, Bullet.new(self.parent.x, self.parent.y + 8, 1, 2, false))
+        -- dive sfx
+        if self.shotsTaken == self.shotsAllowed - 1 and SCREEN.frameInFPS == 30 then
+            sfx(5)
+        end
+        return
     end
+
+    -- start dive
+    self.parent:setPos(self.parent.x, self.parent.y + 4)
 end
 
 function SmallShip:kill()
