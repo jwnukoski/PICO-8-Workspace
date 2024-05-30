@@ -1,6 +1,8 @@
 Bullet = {}
 Bullet.__index = Bullet
-Bullet.E_IDS = {224, 225}
+Bullet.E_IDS = {224, 225, 226, 227}
+Bullet.P_IDS = {240, 241, 242, 243}
+Bullet.COL_OFFSET = 2
 
 function Bullet.new(x, y, xAmt, yAmt, isPlayer)
     local self = setmetatable({}, Bullet)
@@ -10,15 +12,9 @@ function Bullet.new(x, y, xAmt, yAmt, isPlayer)
     self.xAmt = xAmt
     self.yAmt = yAmt
     self.isPlayer = isPlayer
-    self.type = type
     self.alive = true
     self.frameId = 1
-
-    if self.isPlayer then
-        self.col = Collidable.new(self.x, self.y, 1, 2)
-    else
-        self.col = Collidable.new(self.x, self.y, 8, 8)
-    end
+    self.col = Collidable.new(self.x, self.y , 4, 4, Bullet.COL_OFFSET, Bullet.COL_OFFSET)
 
     return self
 end
@@ -30,7 +26,7 @@ function Bullet:draw()
     end
 
     if (self.isPlayer) then
-        rectfill(self.x, self.y, self.x, self.y + 2, COLOR.GRN)
+        spr(Bullet.P_IDS[self.frameId], self.x, self.y)
     end
 
     if (not self.isPlayer) then
@@ -48,17 +44,19 @@ function Bullet:update()
     self.x = self.x + self.xAmt
     self.y = self.y + self.yAmt
 
+    -- offscreen
     if self.y < 0 or self.y > SCREEN.HEIGHT then
         self.alive = false
         return
     end
 
+    -- move collision
     self.col:setPos(self.x, self.y)
 
     -- flash effect
-    if (not self.isPlayer) and (SCREEN.frameInFPS == 15 or SCREEN.frameInFPS == 30) then
-        if self.frameId == 1 then
-            self.frameId = 2
+    if (SCREEN.frameInFPS == 5 or SCREEN.frameInFPS == 10 or SCREEN.frameInFPS == 15 or SCREEN.frameInFPS == 20 or SCREEN.frameInFPS == 25 or SCREEN.frameInFPS == 30) then
+        if self.frameId < #Bullet.E_IDS then
+            self.frameId = self.frameId + 1
         else
             self.frameId = 1
         end

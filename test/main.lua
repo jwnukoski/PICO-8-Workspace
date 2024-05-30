@@ -66,12 +66,12 @@ function _update()
     end
 
     -- Generate new stars
-    if #stars < 5  then
+    if #stars < 30  then
         add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
     end
 
     -- Generate new enemies for test
-    if #enemies < 5  then
+    if #enemies < 10  then
         Meteor.new(rnd(SCREEN.WIDTH), -16, 1)
         SmallShip.new(rnd(SCREEN.WIDTH), -16, 5, SCREEN.HEIGHT / rnd(4))
     end
