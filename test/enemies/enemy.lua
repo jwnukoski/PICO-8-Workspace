@@ -26,18 +26,20 @@ function Enemy:update()
         self:kill(false)
     end
 
-    -- collision with player (not good)
+    -- collision with player
     self.col:collidesWith(player.col, function()
         player:damage()
-        self:hurt(false)
+        self:hurt(false) -- dont count as good
     end)
 
-    -- collision with player bullet (good)
+    -- collision with player bullet
     for i, bullet in pairs(bullets) do
-        self.col:collidesWith(bullet.col, function()
-            bullet:kill()
-            self:hurt(true)
-        end)
+        if bullet.isPlayer then
+            self.col:collidesWith(bullet.col, function()
+                bullet:kill()
+                self:hurt(true)
+            end)
+        end
     end
 
     self.child:update()
@@ -67,8 +69,13 @@ function Enemy:setPos(x, y)
 end
 
 function Enemy:explode()
-    local offset = self.child.w / 3
-    add(explosions, Explosion.new(self.x + offset, self.y + offset))
+    if self.child.w ~= 8 then
+        local offset = self.child.w / 3
+        add(explosions, Explosion.new(self.x + offset, self.y + offset))
+        return
+    end
+    
+    add(explosions, Explosion.new(self.x, self.y))
 end
 
 
@@ -83,6 +90,11 @@ end
 
 function Enemy:kill(killedByPlayer)
     local killedByPlayer = killedByPlayer or false
+    
+    if killedByPlayer then
+        -- score = score + 1
+    end
+
     self.child:kill()
     self.col:kill()
     self.alive = false

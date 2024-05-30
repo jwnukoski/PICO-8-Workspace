@@ -55,16 +55,8 @@ function Bullet:update()
 
     self.col:setPos(self.x, self.y)
 
-    -- collision with player
-    if not self.isPlayer then
-        self.col:collidesWith(player.col, function()
-            player:damage()
-            self:kill()
-        end)
-    end
-
     -- flash effect
-    if not self.isPlayer and SCREEN.frameInFPS == 0 then
+    if (not self.isPlayer) and (SCREEN.frameInFPS == 15 or SCREEN.frameInFPS == 30) then
         if self.frameId == 1 then
             self.frameId = 2
         else

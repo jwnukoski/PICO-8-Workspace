@@ -40,11 +40,32 @@ function Player:heal()
 end
 
 function Player:update()
+    if not self.alive then
+        return
+    end
+
     self:movement()
     
     self:shooting()
 
-    self.col:setPos(self.x + self.colPad, self.y + self.colPad)
+    self:hurtByBullets()
+end
+
+function Player:hurtByBullets()
+    -- Collision with enemy bullet
+    if not self.alive then
+        return
+    end
+
+    -- collision with enemy bullets
+    for i, bullet in pairs(bullets) do
+        if not bullet.isPlayer then
+            self.col:collidesWith(bullet.col, function()
+                bullet:kill()
+                self:damage()
+            end)
+        end
+    end
 end
 
 function Player:shootDelayCount()
@@ -206,10 +227,6 @@ function Player:shootWeaponType()
     self.canShoot = false
 end
 
-function Player:explode()
-    add(explosions, Explosion.new(self.x, self.y, 1, 1))
-end
-
 function Player:damage()
     -- Takes 1 health away
     if not self.alive then
@@ -217,11 +234,17 @@ function Player:damage()
     end
 
     self.health = self.health - 1
-    self:explode()
+    add(explosions, Explosion.new(self.x, self.y, 1, 1))
 
     if self.health == 0 then
-        self.alive = false
+        self:kill()
     end
+end
+
+function Player:kill()
+    self.alive = false
+    self.col:kill()
+    sfx(4)
 end
 
 function Player:movement()
@@ -276,4 +299,6 @@ function Player:move(x, y)
 
     self.x = self.x + x
     self.y = self.y + y
+
+    self.col:setPos(self.x + self.colPad, self.y + self.colPad)
 end

@@ -9,6 +9,7 @@ function Explosion.new(x, y)
     self.y = y
     self.alive = true
     self.frame = 0
+    sfx(0)
 
     return self
 end
@@ -22,10 +23,6 @@ function Explosion:update()
         self.frame = self.frame + 1
     else
         self.alive = false
-    end
-
-    if (self.frame == 1) then
-        sfx(0)
     end
 end
 
