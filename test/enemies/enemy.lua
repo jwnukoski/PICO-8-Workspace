@@ -22,15 +22,29 @@ function Enemy:update()
         return
     end
 
+    -- offscreen
+    if (self.y > SCREEN.HEIGHT) then
+        self:kill(false)
+    end
+
+    -- collision with player (not good)
     self.col:collidesWith(player.col, function()
         player:damage()
-        self:hurt()
+        self:hurt(false)
     end)
+
+    -- collision with player bullet (good)
+    for i, bullet in pairs(bullets) do
+        self.col:collidesWith(bullet.col, function()
+            bullet:kill()
+            self:hurt(true)
+        end)
+    end
 
     self.child:update()
 end
 
-function Enemy:hurt()
+function Enemy:hurt(fromPlayer)
     if (not self.alive) then
         return
     end

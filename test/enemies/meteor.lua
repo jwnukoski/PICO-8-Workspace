@@ -32,14 +32,9 @@ function Meteor:draw()
 end
 
 function Meteor:update()
-    local yPos = self.parent.y + self.speed
-
-    if yPos > SCREEN.HEIGHT then
-        self.parent:kill(false)
-    end
-
-    self.parent:setPos(self.parent.x, yPos)
+    self.parent:setPos(self.parent.x, self.parent.y + self.speed)
 end
 
 function Meteor:kill()
+    -- Nothing needs to happen here, but it must exist
 end

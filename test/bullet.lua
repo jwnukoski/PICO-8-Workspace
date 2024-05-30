@@ -47,29 +47,8 @@ function Bullet:update()
     end
 
     self.col:setPos(self.x, self.y)
+end
 
-    for i, meteor in pairs(meteors) do
-        self.col:collidesWith(meteor.col, function()
-            meteor:explode()
-            self.alive = false
-        end)
-    end
-
-    for i, enemy in pairs(enemies) do
-        self.col:collidesWith(enemy.col, function()
-            enemy:hurt()
-            self.alive = false
-        end)
-    end
-    -- if self.isPlayer then
-        -- Meteors. TODO: fix into 1 group of all enemies
-    -- end
-
-    -- if not self.isPlayer then
-    --     self.col:collidesWith(player.col, function()
-    --         player:damage()
-    --         add(explosions, Explosion.new(self.x, self.y, 1, 1))
-    --         self:kill()
-    --     end)
-    -- end
+function Bullet:kill()
+    self.alive = false
 end
