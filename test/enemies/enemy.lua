@@ -1,6 +1,5 @@
 Enemy = {}
 Enemy.__index = Enemy
-Enemy.debugCol = true
 
 function Enemy.new(x, y, child)
     local self = setmetatable({}, Enemy)
@@ -10,7 +9,7 @@ function Enemy.new(x, y, child)
     self.child = child
     self.alive = true
 
-    self.col = Collidable.new(self.x, self.y, 8, 8, Enemy.debugCol)
+    self.col = Collidable.new(self.x, self.y, 8, 8)
 
     add(enemies, self)
 
@@ -78,6 +77,7 @@ function Enemy:draw()
         return
     end
 
+    self.col:draw()
     self.child:draw()
 end
 

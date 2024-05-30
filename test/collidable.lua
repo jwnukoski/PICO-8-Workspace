@@ -1,15 +1,15 @@
 Collidable = {}
 Collidable.__index = Collidable
+Collidable.DEBUG = false -- show bounds or not
 
 -- Constructor
-function Collidable.new(x, y, w, h, visible)
+function Collidable.new(x, y, w, h)
     local self = setmetatable({}, Collidable)
 
     self.x = x
     self.y = y
     self.w = w
     self.h = h
-    self.visible = visible or false
     self.alive = true
 
     add(collidables, self)
@@ -46,7 +46,7 @@ end
 
 function Collidable:draw()
     -- Debug purposes only
-    if (not self.visible) or (not self.alive) then
+    if (not Collidable.DEBUG) or (not self.alive) then
         return
     end
 
