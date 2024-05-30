@@ -7,6 +7,7 @@ function SmallShip.new(x, y, health, stopPointY)
 
     self.parent = Enemy.new(x, y, self)
     self.health = health
+    self.points = health
     self.w = 8
 
     self.parent.col.w = self.w
@@ -30,7 +31,9 @@ function SmallShip:update()
 
     -- shoots when in position
     if SCREEN.frameInFPS == 0 then
-        add(bullets, Bullet.new(self.parent.x, self.parent.y + 8, 0, 1, false))
+
+        add(bullets, Bullet.new(self.parent.x, self.parent.y + 8, -1, 2, false))
+        add(bullets, Bullet.new(self.parent.x, self.parent.y + 8, 1, 2, false))
     end
 end
 

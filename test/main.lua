@@ -4,8 +4,9 @@ enemies = {}
 collidables = {}
 explosions = {}
 bullets = {}
-menu = {}
+menus = {}
 upgrades = {}
+score = 0
 
 function _draw()
     cls()
@@ -47,7 +48,7 @@ function _draw()
 
     -- Draw the menu
     rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK) -- keep here? just background for menu
-    for _, menu in ipairs(menu) do
+    for _, menu in ipairs(menus) do
         menu:draw()
     end
 end
@@ -96,7 +97,7 @@ function _update()
     end
 
     -- Update the menu
-    for _, menu in ipairs(menu) do
+    for _, menu in ipairs(menus) do
         menu:update()
     end
 
@@ -106,10 +107,23 @@ function _update()
 end
 
 function _init()
+    player = nil
+    stars = {}
+    enemies = {}
+    collidables = {}
+    explosions = {}
+    bullets = {}
+    menus = {}
+    upgrades = {}
+
     player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
-    add(menu, MenuHealth.new())
-    add(menu, MenuWeapon.new())
-    add(menu, MenuTime.new())
+    MenuHealth.new()
+    MenuWeapon.new()
+    MenuTime.new()
+end
+
+function replay()
+    _init()
 end
 
 function garbarge()
@@ -157,6 +171,13 @@ function garbarge()
     for _, upgrade in ipairs(upgrades) do
         if not upgrade.alive then
             del(upgrades, upgrade)
+        end
+    end
+
+    -- Menus
+    for _, menu in ipairs(menus) do
+        if not menu.alive then
+            del(menus, menu)
         end
     end
 end

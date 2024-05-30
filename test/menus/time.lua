@@ -6,14 +6,14 @@ MenuTime.Y = SCREEN.HEIGHT
 -- Constructor
 function MenuTime.new()
     local self = setmetatable({}, MenuTime)
-
     self.time = 0
-
+    self.alive = true
+    add(menus, self)
     return self
 end
 
 function MenuTime:draw()
-    if not player.alive then
+    if not self.alive then
         return
     end
     
@@ -21,11 +21,25 @@ function MenuTime:draw()
 end
 
 function MenuTime:update()
+    if not self.alive then
+        return
+    end
+
     if not player.alive then
+        self:kill()
         return
     end
 
     if SCREEN.frameInFPS == 0 then
         self.time = self.time + 1
     end
+end
+
+function MenuTime:kill()
+    self.alive = false
+end
+
+function MenuTime:reset()
+    self.time = 0
+    self.alive = true
 end

@@ -37,6 +37,10 @@ function Star:update()
     self.y = self.y + self.speed
 
     if self.y > SCREEN.HEIGHT then
-        self.alive = false
+        self:kill()
     end
+end
+
+function Star:kill()
+    self.alive = false
 end

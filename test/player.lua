@@ -245,6 +245,16 @@ function Player:kill()
     self.alive = false
     self.col:kill()
     sfx(4)
+
+    replay()
+end
+
+function Player:reset()
+    self.health = Player.MAX_HEALTH
+    self.alive = true
+    self.x = 60
+    self.y = 100
+    self.col:setPos(self.x + self.colPad, self.y + self.colPad)
 end
 
 function Player:movement()

@@ -8,19 +8,25 @@ MenuWeapon.MAX_LVL = 10
 function MenuWeapon.new()
     local self = setmetatable({}, MenuWeapon)
     self:reset()
+    add(menus, self)
     return self
 end
 
 function MenuWeapon:draw()
-    if not player.alive then
+    if not self.alive then
         return
     end
-
+    
     print(self.text, self.X, self.Y, self.color)
 end
 
 function MenuWeapon:update()
+    if not self.alive then
+        return
+    end
+
     if not player.alive then
+        self:kill()
         return
     end
 
@@ -36,4 +42,9 @@ end
 function MenuWeapon:reset()
     self.text = ""
     self.color = COLOR.WHT
+    self.alive = true
+end
+
+function MenuWeapon:kill()
+    self.alive = false
 end

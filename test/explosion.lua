@@ -22,10 +22,9 @@ function Explosion:update()
     if (self.frame < #self.FRAMES) then
         self.frame = self.frame + 1
     else
-        self.alive = false
+        self:kill()
     end
 end
-
 
 function Explosion:draw()
     if (not self.alive) then
@@ -33,4 +32,8 @@ function Explosion:draw()
     end
 
     spr(self.FRAMES[self.frame], self.x, self.y)
+end
+
+function Explosion:kill()
+    self.alive = false
 end
