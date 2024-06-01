@@ -1,6 +1,7 @@
 Player = {}
 Player.__index = Player
 Player.MAX_HEALTH = 4
+Player.SPRITE_IDS = {1, 2, 3}
 
 -- Constructor
 function Player.new(x, y)
@@ -23,6 +24,7 @@ function Player.new(x, y)
     self.weapon = 1
     self.shootDelay = 10
     self.shootTimer = 0
+    self.spriteIndex = 1
 
     return self
 end
@@ -262,14 +264,18 @@ function Player:movement()
     if btn(INPUT.LT) then
         if self.x > 0 then
             xAmount = -self.MOVE_SPEED
+            self.spriteIndex = 2
         end
     -- Right
     elseif btn(INPUT.RT) then
         if self.x < self.BOUNDS_RIGHT then
             xAmount = self.MOVE_SPEED
+            self.spriteIndex = 3
         end
+    else
+        self.spriteIndex = 1
     end
-    
+
     -- Up
     if btn(INPUT.UP) then
         if self.y > 0 then
@@ -293,7 +299,7 @@ function Player:draw()
         return
     end
 
-    spr(1, self.x, self.y, 1, 1, false, false)
+    spr(Player.SPRITE_IDS[self.spriteIndex], self.x, self.y, 1, 1, false, false)
     
     self.col:draw()
 end
