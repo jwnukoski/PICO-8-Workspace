@@ -1,14 +1,14 @@
-Diver = {}
-Diver.__index = Diver
-Diver.SPRITE_INDEX = 17
+Spinner = {}
+Spinner.__index = Spinner
+Spinner.SPRITE_INDEX = 35
 
-function Diver.new(x, y, health, stopPointY, dropsUpgrade)
-    local self = setmetatable({}, Diver)
+function Spinner.new(x, y, health, stopPointY, dropsUpgrade)
+    local self = setmetatable({}, Spinner)
 
     self.parent = Enemy.new(x, y, self)
     self.health = health
     self.points = health
-    self.w = 8
+    self.w = 16
 
     self.parent.dropsUpgrade = dropsUpgrade or false
 
@@ -17,19 +17,16 @@ function Diver.new(x, y, health, stopPointY, dropsUpgrade)
 
     self.stopPointY = stopPointY
 
-    self.shotsTaken = 0
-    self.shotsAllowed = 5
-
     add(ENEMIES, self.parent)
 
     return self
 end
 
-function Diver:draw()
-    spr(Diver.SPRITE_INDEX, self.parent.x, self.parent.y, 1, 1, false, false)
+function Spinner:draw()
+    -- spr(Spinner.SPRITE_INDEX, self.parent.x, self.parent.y, 1, 1, false, false)
 end
 
-function Diver:update()
+function Spinner:update()
     -- goes down mid screen
     if self.parent.y < self.stopPointY then
         self.parent:setPos(self.parent.x, self.parent.y + 1)
@@ -50,7 +47,6 @@ function Diver:update()
         if self.shotsTaken == self.shotsAllowed - 1 and SCREEN.frameInFPS == 30 then
             sfx(5)
         end
-
         return
     end
 
@@ -58,6 +54,6 @@ function Diver:update()
     self.parent:setPos(self.parent.x, self.parent.y + 4)
 end
 
-function Diver:kill()
+function Spinner:kill()
     -- Nothing needs to happen here, but it must exist
 end
