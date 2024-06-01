@@ -1,102 +1,95 @@
-player = nil
-backgroundDetails = {}
-enemies = {}
-collidables = {}
-explosions = {}
-bullets = {}
-menus = {}
-upgrades = {}
-score = 0
+PLAYER = nil
+BKG_DTLS = {}
+ENEMIES = {}
+COLLIDABLES = {}
+EXPLOSIONS = {}
+BULLETS = {}
+MENUS = {}
+UPGRADES = {}
+SCORE = 0
+LVLS = {}
+CUR_LVL = 1
 
 function _draw()
-    cls(COLOR.BLU)
-
-    for _, bkgDetail in ipairs(backgroundDetails) do
-        bkgDetail:draw()
+    if LVLS[CUR_LVL] ~= nil then
+        cls(LVLS[CUR_LVL]:getClsColor())
+    else
+        cls(COLOR.BLK)
     end
 
-    -- Draw the enemies
-    for _, enemy in ipairs(enemies) do
+    for _, bkgDtl in ipairs(BKG_DTLS) do
+        bkgDtl:draw()
+    end
+
+    for _, enemy in ipairs(ENEMIES) do
         enemy:draw()
     end
 
-    -- Draw the player
-    player:draw()
+    PLAYER:draw()
 
     -- Debug only
-    for _, collidable in ipairs(collidables) do
+    for _, collidable in ipairs(COLLIDABLES) do
         if collidable.visible and collidable.alive then
             collidable:draw()
         end
     end
 
-    -- Draw the bullets
-    for _, bullet in ipairs(bullets) do
+    for _, bullet in ipairs(BULLETS) do
         bullet:draw()
     end
 
-    -- Draw explosions
-    for _, explosion in ipairs(explosions) do
+    for _, explosion in ipairs(EXPLOSIONS) do
         explosion:draw()
     end
 
-    -- Draw upgrades
-    for _, upgrade in ipairs(upgrades) do
+    for _, upgrade in ipairs(UPGRADES) do
         upgrade:draw()
     end
 
     -- Draw the menu
     rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK) -- keep here? just background for menu
-    for _, menu in ipairs(menus) do
+    for _, menu in ipairs(MENUS) do
         menu:draw()
     end
 end
 
 function _update()
-    player:update()
+    if LVLS[CUR_LVL] ~= nil then
+        LVLS[CUR_LVL]:update()
+    end
 
-    if not player.alive then
+    PLAYER:update()
+
+    if not PLAYER.alive then
         return
     end
 
-    for _, backgroundDetail in ipairs(backgroundDetails) do
-        backgroundDetail:update()
+    for _, bkgDtl in ipairs(BKG_DTLS) do
+        bkgDtl:update()
     end
 
-    -- Generate new stars
-    -- if #stars < 30  then
-    --     add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
-    -- end
-    if #backgroundDetails < 20 then
-        add(backgroundDetails, Cloud.new(rnd(SCREEN.WIDTH), -16))
+    -- Generate level background
+    if #BKG_DTLS < 20 and LVLS[CUR_LVL] ~= nil then
+        add(BKG_DTLS, LVLS[CUR_LVL]:bkgDecorFactory())
     end
 
-    -- Generate new enemies for test
-    if #enemies < 1  then
-    end
-
-    -- Update the enemies
-    for _, enemy in ipairs(enemies) do
+    for _, enemy in ipairs(ENEMIES) do
         enemy:update()
     end
 
-    -- Update bullets
-    for _, bullet in ipairs(bullets) do
+    for _, bullet in ipairs(BULLETS) do
         bullet:update()
     end
 
-    -- Update explosions
-    for _, explosion in ipairs(explosions) do
+    for _, explosion in ipairs(EXPLOSIONS) do
         explosion:update()
     end
 
-    -- Update upgrades
-    for _, upgrade in ipairs(upgrades) do
+    for _, upgrade in ipairs(UPGRADES) do
         upgrade:update()
     end
 
-    -- Update the menu
-    for _, menu in ipairs(menus) do
+    for _, menu in ipairs(MENUS) do
         menu:update()
     end
 
@@ -106,23 +99,31 @@ function _update()
 end
 
 function _init()
-    player = nil
-    stars = {}
-    enemies = {}
-    collidables = {}
-    explosions = {}
-    bullets = {}
-    menus = {}
-    upgrades = {}
+    RESET()
+end
 
-    player = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
+function RESET()
+    PLAYER = nil
+    STARS = {}
+    ENEMIES = {}
+    COLLIDABLES = {}
+    EXPLOSIONS = {}
+    BULLETS = {}
+    MENUS = {}
+    UPGRADES = {}
+    SCORE = 0
+    LVLS = {
+        LEVEL_ONE,
+    }
+    CUR_LVL = 1
+
+    PLAYER = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
     MenuHealth.new()
     MenuWeapon.new()
     MenuTime.new()
-end
 
-function replay()
-    _init()
+    log(LVLS[CUR_LVL])
+    LVLS[CUR_LVL]:setup()
 end
 
 function garbarge()
@@ -131,54 +132,45 @@ function garbarge()
         return
     end
 
-    -- Background
-    for _, backgroundDetail in ipairs(backgroundDetails) do
-        if not backgroundDetail.alive then
-            del(backgroundDetails, backgroundDetail)
+    for _, bkgDtl in ipairs(BKG_DTLS) do
+        if not bkgDtl.alive then
+            del(BKG_DTLS, bkgDtl)
         end
     end
 
-    --
-
-    -- enemies
-    for _, enemy in ipairs(enemies) do
+    for _, enemy in ipairs(ENEMIES) do
         if not enemy.alive then
-            del(enemies, enemy)
+            del(ENEMIES, enemy)
         end
     end
 
-    -- Collisions
-    for _, collidable in ipairs(collidables) do
+    for _, collidable in ipairs(COLLIDABLES) do
         if not collidable.alive then
-            del(collidables, collidable)
+            del(COLLIDABLES, collidable)
         end
     end
 
-    -- Bullets
-    for _, bullet in ipairs(bullets) do
+    for _, bullet in ipairs(BULLETS) do
         if not bullet.alive then
-            del(bullets, bullet)
+            del(BULLETS, bullet)
         end
     end
 
-    -- Explosions
-    for _, explosion in ipairs(explosions) do
+    for _, explosion in ipairs(EXPLOSIONS) do
         if not explosion.alive then
-            del(explosions, explosion)
+            del(EXPLOSIONS, explosion)
         end
     end
 
-    -- Upgrades
-    for _, upgrade in ipairs(upgrades) do
+    for _, upgrade in ipairs(UPGRADES) do
         if not upgrade.alive then
-            del(upgrades, upgrade)
+            del(UPGRADES, upgrade)
         end
     end
 
-    -- Menus
-    for _, menu in ipairs(menus) do
+    for _, menu in ipairs(MENUS) do
         if not menu.alive then
-            del(menus, menu)
+            del(MENUS, menu)
         end
     end
 end

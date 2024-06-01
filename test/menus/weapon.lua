@@ -8,7 +8,7 @@ MenuWeapon.MAX_LVL = 10
 function MenuWeapon.new()
     local self = setmetatable({}, MenuWeapon)
     self:reset()
-    add(menus, self)
+    add(MENUS, self)
     return self
 end
 
@@ -25,18 +25,18 @@ function MenuWeapon:update()
         return
     end
 
-    if not player.alive then
+    if not PLAYER.alive then
         self:kill()
         return
     end
 
-    if player.weapon >= MenuWeapon.MAX_LVL then
+    if PLAYER.weapon >= MenuWeapon.MAX_LVL then
         self.text = (ASCII.STAR_THW .. "MAX")
         self.color = COLOR.YLW
         return
     end
 
-    self.text = ASCII.STAR_THW .. player.weapon
+    self.text = ASCII.STAR_THW .. PLAYER.weapon
 end
 
 function MenuWeapon:reset()

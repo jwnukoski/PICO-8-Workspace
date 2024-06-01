@@ -38,8 +38,8 @@ function Diver:update()
     if self.shotsTaken < self.shotsAllowed then
         if SCREEN.frameInFPS == 0 then
             sfx(2)
-            add(bullets, Bullet.new(self.parent.x, self.parent.y + 2, -1, 2, false))
-            add(bullets, Bullet.new(self.parent.x, self.parent.y + 2, 1, 2, false))
+            add(BULLETS, Bullet.new(self.parent.x, self.parent.y + 2, -1, 2, false))
+            add(BULLETS, Bullet.new(self.parent.x, self.parent.y + 2, 1, 2, false))
             self.shotsTaken = self.shotsTaken + 1
             return
         end

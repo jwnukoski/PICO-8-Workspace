@@ -35,15 +35,15 @@ function Follower:update()
     -- shoot
     if SCREEN.frameInFPS == 0 or SCREEN.frameInFPS == 5 or SCREEN.frameInFPS == 10 or SCREEN.frameInFPS == 15 then
             sfx(2)
-            add(bullets, Bullet.new(self.parent.x + 13, self.parent.y + 8, 1, 1, false))
-            add(bullets, Bullet.new(self.parent.x - 4, self.parent.y + 8, -1, 1, false))
-            add(bullets, Bullet.new(self.parent.x + 4, self.parent.y + 10, 0, 1, false))
+            add(BULLETS, Bullet.new(self.parent.x + 13, self.parent.y + 8, 1, 1, false))
+            add(BULLETS, Bullet.new(self.parent.x - 4, self.parent.y + 8, -1, 1, false))
+            add(BULLETS, Bullet.new(self.parent.x + 4, self.parent.y + 10, 0, 1, false))
     end
 
     -- move
-    if self.parent.x < player.x - 4 then
+    if self.parent.x < PLAYER.x - 4 then
         self.parent:setPos(self.parent.x + 1, self.parent.y)
-    elseif self.parent.x > player.x - 4 then
+    elseif self.parent.x > PLAYER.x - 4 then
         self.parent:setPos(self.parent.x - 1, self.parent.y)
     end
 end

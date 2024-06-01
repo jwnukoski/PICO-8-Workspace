@@ -14,7 +14,7 @@ function Collidable.new(x, y, w, h, xOffset, yOffset)
     self.yOffset = yOffset or 0
     self.alive = true
 
-    add(collidables, self)
+    add(COLLIDABLES, self)
     self:setPos(x, y)
 
     return self

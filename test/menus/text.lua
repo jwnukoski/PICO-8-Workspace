@@ -11,7 +11,7 @@ function MenuText.new(x, y, text, color, time)
     self.time = time or 0
     self.counter = 0
     self.alive = true
-    add(menus, self)
+    add(MENUS, self)
     return self
 end
 

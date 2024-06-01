@@ -12,7 +12,7 @@ function Enemy.new(x, y, child, dropsUpgrade)
 
     self.col = Collidable.new(self.x, self.y, 8, 8)
 
-    add(enemies, self)
+    add(ENEMIES, self)
 
     return self
 end
@@ -28,13 +28,13 @@ function Enemy:update()
     end
 
     -- collision with player
-    self.col:collidesWith(player.col, function()
-        player:damage()
+    self.col:collidesWith(PLAYER.col, function()
+        PLAYER:damage()
         self:hurt(false) -- dont count as good
     end)
 
     -- collision with player bullet
-    for i, bullet in pairs(bullets) do
+    for i, bullet in pairs(BULLETS) do
         if bullet.isPlayer then
             self.col:collidesWith(bullet.col, function()
                 bullet:kill()
@@ -72,11 +72,11 @@ end
 function Enemy:explode()
     if self.child.w ~= 8 then
         local offset = self.child.w / 3
-        add(explosions, Explosion.new(self.x + offset, self.y + offset))
+        add(EXPLOSIONS, Explosion.new(self.x + offset, self.y + offset))
         return
     end
     
-    add(explosions, Explosion.new(self.x, self.y))
+    add(EXPLOSIONS, Explosion.new(self.x, self.y))
 end
 
 
@@ -94,11 +94,11 @@ function Enemy:kill(killedByPlayer)
     
     if killedByPlayer and self.child.points ~= nil then
         MenuText.new(self.x, self.y, "+" .. self.child.points, COLOR.WHT, SCREEN.FPS)
-        score = score + self.child.points
+        SCORE = SCORE + self.child.points
     end
 
     if self.dropsUpgrade and killedByPlayer then
-        add(upgrades, Upgrade.new(self.x, self.y))
+        add(UPGRADES, Upgrade.new(self.x, self.y))
     end
 
     self.child:kill()

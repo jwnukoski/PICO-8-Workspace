@@ -8,7 +8,7 @@ function MenuHealth.new()
     local self = setmetatable({}, MenuHealth)
     self.alive = true
     self.text = ""
-    add(menus, self)
+    add(MENUS, self)
     return self
 end
 
@@ -25,16 +25,16 @@ function MenuHealth:update()
         return
     end
 
-    if #self.text == player.health then
+    if #self.text == PLAYER.health then
         return
     end
 
-    if not player.alive then
+    if not PLAYER.alive then
         self:kill()
     end
 
     self.text = ""
-    for i = 1, player.health do
+    for i = 1, PLAYER.health do
         self.text = self.text .. ASCII.HEART
     end
 end

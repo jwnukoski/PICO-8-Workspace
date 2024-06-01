@@ -8,7 +8,7 @@ function MenuTime.new()
     local self = setmetatable({}, MenuTime)
     self.time = 0
     self.alive = true
-    add(menus, self)
+    add(MENUS, self)
     return self
 end
 
@@ -25,7 +25,7 @@ function MenuTime:update()
         return
     end
 
-    if not player.alive then
+    if not PLAYER.alive then
         self:kill()
         return
     end

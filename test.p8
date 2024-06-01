@@ -12,8 +12,9 @@ __lua__
 #include ./test/collidable.lua
 #include ./test/bullet.lua
 #include ./test/upgrade.lua
-#include ./test/background/star.lua
-#include ./test/background/cloud.lua
+#include ./test/backgrounds/star.lua
+#include ./test/backgrounds/cloud.lua
+#include ./test/backgrounds/static.lua
 #include ./test/explosion.lua
 #include ./test/enemies/meteor.lua
 #include ./test/enemies/enemy.lua
@@ -24,6 +25,9 @@ __lua__
 #include ./test/menus/weapon.lua
 #include ./test/menus/time.lua
 #include ./test/menus/text.lua
+#include ./test/levels/action.lua
+#include ./test/levels/level.lua
+#include ./test/levels/one.lua
 #include ./test/main.lua
 
 __gfx__
