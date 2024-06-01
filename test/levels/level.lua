@@ -19,8 +19,6 @@ function Level.new(actions, endFrame, endCallback, background)
     else
         self.background = Level.BACKGROUNDS[self.background]
     end
-    log(self.background)
-
 
     return self
 end
@@ -61,6 +59,7 @@ function Level:getClsColor()
 end
 
 function Level:bkgDecorFactory()
+    -- Add your code here
     if self.background == Level.BACKGROUNDS[1] then
         return Cloud.new(flr(rnd(SCREEN.WIDTH)), -16)
     end

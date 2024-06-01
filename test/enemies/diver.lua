@@ -20,6 +20,8 @@ function Diver.new(x, y, health, stopPointY, dropsUpgrade)
     self.shotsTaken = 0
     self.shotsAllowed = 5
 
+    add(ENEMIES, self.parent)
+
     return self
 end
 

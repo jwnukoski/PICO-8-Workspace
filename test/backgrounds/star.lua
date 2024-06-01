@@ -18,10 +18,14 @@ function Star.new(x, y)
         self.color = COLOR.WHT
     end
 
+    add(BKG_DTLS, self)
+
     return self
 end
 
 function Star:draw()
+    log("draw star")
+
     if not self.alive then
         return
     end
@@ -30,6 +34,8 @@ function Star:draw()
 end
 
 function Star:update()
+    log("update star")
+
     if not self.alive then
         return
     end

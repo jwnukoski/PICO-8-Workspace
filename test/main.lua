@@ -67,13 +67,13 @@ function _update()
         return
     end
 
-    for _, bkgDtl in ipairs(BKG_DTLS) do
-        bkgDtl:update()
+    -- Generate level background
+    if #BKG_DTLS < 30 then
+        LVLS[CUR_LVL]:bkgDecorFactory()
     end
 
-    -- Generate level background
-    if #BKG_DTLS < 20 and LVLS[CUR_LVL] ~= nil then
-        add(BKG_DTLS, LVLS[CUR_LVL]:bkgDecorFactory())
+    for _, bkgDtl in ipairs(BKG_DTLS) do
+        bkgDtl:update()
     end
 
     for _, enemy in ipairs(ENEMIES) do
@@ -103,19 +103,22 @@ end
 
 function _init()
     RESET()
-    
 end
 
 function RESET()
     SCORE = 0
     PLAYER = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
+    MENUS = {}
+    MenuHealth.new()
+    MenuWeapon.new()
+    MenuTime.new()
     CHANGE_LVL(1)
 end
 
 function CHANGE_LVL(lvl)
     CUR_LVL = lvl
 
-    BKG_DTLS = {}
+    -- BKG_DTLS = {}
     ENEMIES = {}
     COLLIDABLES = {}
     EXPLOSIONS = {}

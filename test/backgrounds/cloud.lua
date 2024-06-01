@@ -17,6 +17,8 @@ function Cloud.new(x, y)
         self.speed = 1
     end
 
+    add(BKG_DTLS, self)
+
     return self
 end
 

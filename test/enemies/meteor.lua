@@ -26,6 +26,8 @@ function Meteor.new(x, y, health)
     self.parent.col.w = self.w
     self.parent.col.h = self.w
 
+    add(ENEMIES, self.parent)
+
     return self
 end
 
