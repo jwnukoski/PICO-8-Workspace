@@ -13,7 +13,7 @@ function Static.new(x, y, spriteIndex, spriteSize)
     return self
 end
 
-function Star:draw()
+function Static:draw()
     if not self.alive then
         return
     end
@@ -21,12 +21,12 @@ function Star:draw()
     spr(self.spriteIndex, self.x, self.y, self.selfspriteSize, self.spriteSize, false, false)
 end
 
-function Star:update()
+function Static:update()
     if not self.alive then
         return
     end
 end
 
-function Star:kill()
+function Static:kill()
     self.alive = false
 end

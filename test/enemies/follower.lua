@@ -17,9 +17,6 @@ function Follower.new(x, y, health, stopPointY, dropsUpgrade)
 
     self.stopPointY = stopPointY or 32
 
-    self.shotsTaken = 0
-    self.shotsAllowed = 20
-
     add(ENEMIES, self.parent)
 
     return self

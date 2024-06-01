@@ -118,12 +118,10 @@ end
 function CHANGE_LVL(lvl)
     CUR_LVL = lvl
 
-    -- BKG_DTLS = {}
     ENEMIES = {}
     COLLIDABLES = {}
     EXPLOSIONS = {}
     BULLETS = {}
-    UPGRADES = {}
 
     LVLS[CUR_LVL]:setup()
 end

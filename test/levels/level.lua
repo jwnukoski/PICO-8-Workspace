@@ -64,9 +64,7 @@ function Level:bkgDecorFactory()
         return Cloud.new(flr(rnd(SCREEN.WIDTH)), -16)
     end
 
-    if self.background == Level.BACKGROUNDS[2] then
-        return Star.new(flr(rnd(SCREEN.WIDTH)), -8)
-    end
+    return Star.new(flr(rnd(SCREEN.WIDTH)), -8)
 end
 
 function Level:setup()

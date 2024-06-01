@@ -1,7 +1,7 @@
 LEVEL_ONE = Level.new(
     {
         Action.new(2, function()
-            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "LEVEL ONE", COLOR.ORG, SCREEN.FPS * 3))
+            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "LEVEL ONE", COLOR.RED, SCREEN.FPS * 3))
         end),
         
         Action.new(5, function()
@@ -25,14 +25,10 @@ LEVEL_ONE = Level.new(
         end),
 
         Action.new(20, function()
-            Follower.new(64, -16, 5, 8, true)
+            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "FINAL WAVE", COLOR.RED, SCREEN.FPS * 3))
         end),
 
-        Action.new(25, function()
-            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "FINAL WAVE", COLOR.ORG, SCREEN.FPS * 3))
-        end),
-
-        Action.new(30, function()
+        Action.new(24, function()
             Follower.new(64, -16, 20, 8)
             Diver.new(8, -8, 2, 30)
             Diver.new(16, -8, 2, 30)
@@ -47,9 +43,9 @@ LEVEL_ONE = Level.new(
         end),
     },
 
-    40,
+    37,
     function()
-        add(MENUS, MenuText.new(SCREEN.WIDTH / 4, SCREEN.HEIGHT / 3, "LEVEL ONE COMPLETE", COLOR.ORG, SCREEN.FPS * 3))
+        add(MENUS, MenuText.new(SCREEN.WIDTH / 4, SCREEN.HEIGHT / 3, "LEVEL ONE COMPLETE", COLOR.RED, SCREEN.FPS * 3))
         CHANGE_LVL(2)
     end,
     1
