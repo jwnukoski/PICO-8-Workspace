@@ -23,7 +23,7 @@ function Enemy:update()
     end
 
     -- offscreen
-    if (self.y > SCREEN.HEIGHT or self.x > SCREEN.WIDTH or self.x < 0) then
+    if (self.y > SCREEN.HEIGHT or self.x > SCREEN.WIDTH or self.x < -self.child.w) then
         self:kill(false)
     end
 
@@ -37,6 +37,10 @@ function Enemy:update()
     for i, bullet in pairs(BULLETS) do
         if bullet.isPlayer then
             self.col:collidesWith(bullet.col, function()
+                if not bullet.alive then
+                    return
+                end
+
                 bullet:kill()
                 self:hurt(true)
             end)

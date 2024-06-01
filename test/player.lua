@@ -61,6 +61,10 @@ function Player:hurtByBullets()
     for i, bullet in pairs(BULLETS) do
         if not bullet.isPlayer then
             self.col:collidesWith(bullet.col, function()
+                if not bullet.alive then
+                    return
+                end
+                
                 bullet:kill()
                 self:damage()
             end)
@@ -154,70 +158,70 @@ function Player:shootWeaponType()
     -- Spawn bullet patterns
     if self.weapon == 1 then
         -- 1 centered
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -2, true))
+        Bullet.new(self.x, self.y - 4, 0, -2, true)
     end
 
     if self.weapon == 2 then
         -- 1 centered
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -3, true))
+        Bullet.new(self.x, self.y - 4, 0, -3, true)
     end
 
     if self.weapon == 3 then
         -- 1 centered
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -4, true))
+        Bullet.new(self.x, self.y - 4, 0, -4, true)
     end
 
     if self.weapon == 4 then
         -- 2 centered
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, 0, -2, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 0, -2, true))
+        Bullet.new(self.x - 3, self.y - 4, 0, -2, true)
+        Bullet.new(self.x + 3, self.y - 4, 0, -2, true)
     end
 
     if self.weapon == 5 then
         -- 2 centered
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, 0, -3, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 0, -3, true))
+        Bullet.new(self.x - 3, self.y - 4, 0, -3, true)
+        Bullet.new(self.x + 3, self.y - 4, 0, -3, true)
     end
 
     if self.weapon == 6 then
         -- 3 split
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, -2, -2, true))
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -2, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 2, -2, true))
+        Bullet.new(self.x - 3, self.y - 4, -2, -2, true)
+        Bullet.new(self.x, self.y - 4, 0, -2, true)
+        Bullet.new(self.x + 3, self.y - 4, 2, -2, true)
     end
 
     if self.weapon == 7 then
         -- 3 split
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, -3, -3, true))
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -3, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 3, -3, true))
+        Bullet.new(self.x - 3, self.y - 4, -3, -3, true)
+        Bullet.new(self.x, self.y - 4, 0, -3, true)
+        Bullet.new(self.x + 3, self.y - 4, 3, -3, true)
     end
 
     if self.weapon == 8 then
          -- 3 split
-         add(BULLETS, Bullet.new(self.x - 3, self.y - 4, -4, -4, true))
-        add(BULLETS, Bullet.new(self.x, self.y - 4, 0, -4, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 4, -4, true))
+        Bullet.new(self.x - 3, self.y - 4, -4, -4, true)
+        Bullet.new(self.x, self.y - 4, 0, -4, true)
+        Bullet.new(self.x + 3, self.y - 4, 4, -4, true)
     end
 
     if self.weapon == 9 then
         -- 3 split, 2 centered
-        add(BULLETS, Bullet.new(self.x - 6, self.y - 4, -2, -2, true))
+        Bullet.new(self.x - 6, self.y - 4, -2, -2, true)
 
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, 0, -2, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 0, -2, true))
+        Bullet.new(self.x - 3, self.y - 4, 0, -2, true)
+        Bullet.new(self.x + 3, self.y - 4, 0, -2, true)
 
-        add(BULLETS, Bullet.new(self.x + 6, self.y - 4, 2, -2, true))
+        Bullet.new(self.x + 6, self.y - 4, 2, -2, true)
     end
 
     if self.weapon == 10 then
         -- 3 split, 2 centered
-        add(BULLETS, Bullet.new(self.x - 6, self.y - 4, -4, -4, true))
+        Bullet.new(self.x - 6, self.y - 4, -4, -4, true)
 
-        add(BULLETS, Bullet.new(self.x - 3, self.y - 4, 0, -4, true))
-        add(BULLETS, Bullet.new(self.x + 3, self.y - 4, 0, -4, true))
+        Bullet.new(self.x - 3, self.y - 4, 0, -4, true)
+        Bullet.new(self.x + 3, self.y - 4, 0, -4, true)
 
-        add(BULLETS, Bullet.new(self.x + 6, self.y - 4, 4, -4, true))
+        Bullet.new(self.x + 6, self.y - 4, 4, -4, true)
     end
     
     sfx(1)

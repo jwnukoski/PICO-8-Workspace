@@ -10,7 +10,8 @@ SCORE = 0
 CUR_LVL = 1
 LVLS = { 
     LEVEL_ONE,
-    LEVEL_TWO
+    LEVEL_TWO,
+    LEVEL_THREE
 }
 
 function _draw()

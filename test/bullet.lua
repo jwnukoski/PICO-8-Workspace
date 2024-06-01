@@ -16,6 +16,8 @@ function Bullet.new(x, y, xAmt, yAmt, isPlayer)
     self.frameId = 1
     self.col = Collidable.new(self.x, self.y , 4, 4, Bullet.COL_OFFSET, Bullet.COL_OFFSET)
 
+    add(BULLETS, self)
+
     return self
 end
 
@@ -45,7 +47,7 @@ function Bullet:update()
     self.y = self.y + self.yAmt
 
     -- offscreen
-    if self.y < 0 or self.y > SCREEN.HEIGHT then
+    if (self.y < -8 or self.y > SCREEN.HEIGHT) or (self.x < -8 or self.y > SCREEN.WIDTH) then
         self.alive = false
         return
     end
@@ -53,7 +55,7 @@ function Bullet:update()
     -- move collision
     self.col:setPos(self.x, self.y)
 
-    -- flash effect
+    -- animation
     if (SCREEN.frameInFPS == 5 or SCREEN.frameInFPS == 10 or SCREEN.frameInFPS == 15 or SCREEN.frameInFPS == 20 or SCREEN.frameInFPS == 25 or SCREEN.frameInFPS == 30) then
         if self.frameId < #Bullet.E_IDS then
             self.frameId = self.frameId + 1

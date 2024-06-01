@@ -1,7 +1,7 @@
-LEVEL_TWO = Level.new(
+LEVEL_THREE = Level.new(
     {
-        Action.new(2, function()
-            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "LEVEL TWO", COLOR.RED, SCREEN.FPS * 3))
+        Action.new(5, function()
+            add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "LEVEL THREE", COLOR.RED, SCREEN.FPS * 3))
         end),
 
         Action.new(5, function()
@@ -31,8 +31,8 @@ LEVEL_TWO = Level.new(
 
     35,
     function()
-        add(MENUS, MenuText.new(SCREEN.WIDTH / 4, SCREEN.HEIGHT / 3, "LEVEL TWO COMPLETE", COLOR.RED, SCREEN.FPS * 3))
-        CHANGE_LVL(2)
+        add(MENUS, MenuText.new(SCREEN.WIDTH / 4, SCREEN.HEIGHT / 3, "GAME COMPLETE", COLOR.GREEN, SCREEN.FPS * 10))
+        
     end,
     2
 )

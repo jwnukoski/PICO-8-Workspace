@@ -35,9 +35,9 @@ function Follower:update()
     -- shoot
     if SCREEN.frameInFPS == 0 or SCREEN.frameInFPS == 5 or SCREEN.frameInFPS == 10 or SCREEN.frameInFPS == 15 then
             sfx(2)
-            add(BULLETS, Bullet.new(self.parent.x + 13, self.parent.y + 8, 1, 1, false))
-            add(BULLETS, Bullet.new(self.parent.x - 4, self.parent.y + 8, -1, 1, false))
-            add(BULLETS, Bullet.new(self.parent.x + 4, self.parent.y + 10, 0, 1, false))
+            Bullet.new(self.parent.x + 13, self.parent.y + 8, 1, 1, false)
+            Bullet.new(self.parent.x - 4, self.parent.y + 8, -1, 1, false)
+            Bullet.new(self.parent.x + 4, self.parent.y + 10, 0, 1, false)
     end
 
     -- move

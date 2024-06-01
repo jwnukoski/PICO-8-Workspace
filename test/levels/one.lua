@@ -29,17 +29,11 @@ LEVEL_ONE = Level.new(
         end),
 
         Action.new(24, function()
-            Follower.new(64, -16, 20, 8)
+            Follower.new(64, -16, 20, 8, true)
             Diver.new(8, -8, 2, 30)
             Diver.new(16, -8, 2, 30)
             Diver.new(80, -8, 2, 30)
             Diver.new(96, -8, 2, 30)
-        end),
-
-        Action.new(33, function()
-            Diver.new(32, -8, 2, 30)
-            Diver.new(48, -8, 2, 30)
-            Diver.new(64, -8, 2, 30)
         end),
     },
 
