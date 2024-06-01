@@ -3,12 +3,13 @@ Level.__index = Level
 Level.BACKGROUNDS = { "SKY", "SPACE" }
 
 -- High level class. Levels have actions.
-function Level.new(actions, endFrame, background)
+function Level.new(actions, endFrame, endCallback, background)
     local self = setmetatable({}, Level)
     
     self.alive = false
     self.actions = actions -- list of actions
     self.endFrame = endFrame -- when the level is over
+    self.endCallback = endCallback -- what do do when level is over an no enemies are left
     self.secondsInLvl = 0
 
     -- Determine background
@@ -18,6 +19,7 @@ function Level.new(actions, endFrame, background)
     else
         self.background = Level.BACKGROUNDS[self.background]
     end
+    log(self.background)
 
 
     return self
@@ -36,7 +38,8 @@ function Level:update()
         action:update(self.secondsInLvl)
     end
 
-    if self.secondsInLvl == self.endFrame then
+    if self.secondsInLvl >= self.endFrame and #ENEMIES == 0 then
+        self:endCallback() -- not an 'action' instance, just a function
         self:kill()
     end
 end
@@ -51,7 +54,7 @@ end
 
 function Level:getClsColor()
     if self.background == Level.BACKGROUNDS[1] then
-        return COLOR.BLU
+        return COLOR.DRK_BLU
     end
 
     return COLOR.BLK
@@ -62,7 +65,9 @@ function Level:bkgDecorFactory()
         return Cloud.new(flr(rnd(SCREEN.WIDTH)), -16)
     end
 
-    return Star.new(flr(rnd(SCREEN.WIDTH)), -8)
+    if self.background == Level.BACKGROUNDS[2] then
+        return Star.new(flr(rnd(SCREEN.WIDTH)), -8)
+    end
 end
 
 function Level:setup()

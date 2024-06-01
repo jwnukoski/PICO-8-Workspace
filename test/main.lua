@@ -7,8 +7,11 @@ BULLETS = {}
 MENUS = {}
 UPGRADES = {}
 SCORE = 0
-LVLS = {}
 CUR_LVL = 1
+LVLS = { 
+    LEVEL_ONE,
+    LEVEL_TWO
+}
 
 function _draw()
     if LVLS[CUR_LVL] ~= nil then
@@ -93,41 +96,37 @@ function _update()
         menu:update()
     end
 
-    garbarge()
+    garbage()
 
     SCREEN:advanceFrame()
 end
 
 function _init()
     RESET()
+    
 end
 
 function RESET()
-    PLAYER = nil
-    STARS = {}
+    SCORE = 0
+    PLAYER = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
+    CHANGE_LVL(1)
+end
+
+function CHANGE_LVL(lvl)
+    CUR_LVL = lvl
+
+    BKG_DTLS = {}
     ENEMIES = {}
     COLLIDABLES = {}
     EXPLOSIONS = {}
     BULLETS = {}
-    MENUS = {}
     UPGRADES = {}
-    SCORE = 0
-    LVLS = {
-        LEVEL_ONE,
-    }
-    CUR_LVL = 1
 
-    PLAYER = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
-    MenuHealth.new()
-    MenuWeapon.new()
-    MenuTime.new()
-
-    log(LVLS[CUR_LVL])
     LVLS[CUR_LVL]:setup()
 end
 
-function garbarge()
-    -- Infrequent garbarge collection
+function garbage()
+    -- Infrequent collection
     if (SCREEN.frameInFPS ~= 15) and (SCREEN.frameInFPS ~= 30) then
         return
     end

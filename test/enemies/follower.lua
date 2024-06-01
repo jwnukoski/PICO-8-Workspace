@@ -2,7 +2,7 @@ Follower = {}
 Follower.__index = Follower
 Follower.SPRITE_INDEX = 33
 
-function Follower.new(x, y, health, stopPointY)
+function Follower.new(x, y, health, stopPointY, dropsUpgrade)
     local self = setmetatable({}, Follower)
 
     self.parent = Enemy.new(x, y, self)
@@ -10,10 +10,12 @@ function Follower.new(x, y, health, stopPointY)
     self.points = health
     self.w = 16
 
+    self.parent.dropsUpgrade = dropsUpgrade or false
+
     self.parent.col.w = self.w
     self.parent.col.h = self.w
 
-    self.stopPointY = stopPointY
+    self.stopPointY = stopPointY or 32
 
     self.shotsTaken = 0
     self.shotsAllowed = 20
@@ -26,7 +28,6 @@ function Follower:draw()
 end
 
 function Follower:update()
-    -- goes down mid screen
     if self.parent.y < self.stopPointY then
         self.parent:setPos(self.parent.x, self.parent.y + 2)
         return

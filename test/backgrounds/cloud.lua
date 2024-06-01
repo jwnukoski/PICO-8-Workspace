@@ -10,7 +10,6 @@ function Cloud.new(x, y)
     self.alive = true
     self.flipX = rnd(2) > 1
     self.spriteId = flr(rnd(#Cloud.SPRITE_IDS)) + 1
-    log(self.spriteId)
 
     -- cheap distance effect
     self.speed = 2

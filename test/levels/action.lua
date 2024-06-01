@@ -19,8 +19,6 @@ function Action:update(secondsInLvl)
 
     if self.frame == secondsInLvl then
         self:action()
-        log("CALL " .. self.frame)
-        log("with " .. SCREEN.frameInFPS)
         self:kill()
     end
 end

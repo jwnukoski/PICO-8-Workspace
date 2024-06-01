@@ -2,7 +2,7 @@ Diver = {}
 Diver.__index = Diver
 Diver.SPRITE_INDEX = 17
 
-function Diver.new(x, y, health, stopPointY)
+function Diver.new(x, y, health, stopPointY, dropsUpgrade)
     local self = setmetatable({}, Diver)
 
     self.parent = Enemy.new(x, y, self)
@@ -10,7 +10,7 @@ function Diver.new(x, y, health, stopPointY)
     self.points = health
     self.w = 8
 
-    self.parent.dropsUpgrade = true
+    self.parent.dropsUpgrade = dropsUpgrade or false
 
     self.parent.col.w = self.w
     self.parent.col.h = self.w
