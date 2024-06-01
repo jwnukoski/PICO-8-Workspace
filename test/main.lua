@@ -1,5 +1,5 @@
 player = nil
-stars = {}
+backgroundDetails = {}
 enemies = {}
 collidables = {}
 explosions = {}
@@ -9,11 +9,10 @@ upgrades = {}
 score = 0
 
 function _draw()
-    cls()
+    cls(COLOR.BLU)
 
-    -- Draw the stars
-    for _, star in ipairs(stars) do
-        star:draw()
+    for _, bkgDetail in ipairs(backgroundDetails) do
+        bkgDetail:draw()
     end
 
     -- Draw the enemies
@@ -60,14 +59,16 @@ function _update()
         return
     end
 
-    -- Update the stars
-    for _, star in ipairs(stars) do
-        star:update()
+    for _, backgroundDetail in ipairs(backgroundDetails) do
+        backgroundDetail:update()
     end
 
     -- Generate new stars
-    if #stars < 30  then
-        add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
+    -- if #stars < 30  then
+    --     add(stars, Star.new(rnd(SCREEN.WIDTH), 0, rnd(4), rnd(4), COLOR.WHT))
+    -- end
+    if #backgroundDetails < 20 then
+        add(backgroundDetails, Cloud.new(rnd(SCREEN.WIDTH), -16))
     end
 
     -- Generate new enemies for test
@@ -130,12 +131,14 @@ function garbarge()
         return
     end
 
-    -- Stars
-    for _, star in ipairs(stars) do
-        if not star.alive then
-            del(stars, star)
+    -- Background
+    for _, backgroundDetail in ipairs(backgroundDetails) do
+        if not backgroundDetail.alive then
+            del(backgroundDetails, backgroundDetail)
         end
     end
+
+    --
 
     -- enemies
     for _, enemy in ipairs(enemies) do

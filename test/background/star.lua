@@ -7,10 +7,10 @@ function Star.new(x, y)
     self.x = x
     self.y = y
     self.alive = true
-    
+
     -- Cheap distance effect
     self.speed = flr(rnd(3)) + 1
-    
+
     self.color = COLOR.DRK_GRY
     if (self.speed == 2) then
         self.color = COLOR.LGT_GRY

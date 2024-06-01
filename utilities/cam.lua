@@ -19,4 +19,5 @@ CAM = {
     inView = function(self, x, y, w, h)
         return x + w > self.x and x < self.x + SCREEN.WIDTH and y + h > self.y and y < self.y + SCREEN.HEIGHT
     end
+
 }
