@@ -46,6 +46,7 @@ function Upgrade:update()
     self.col:setPos(self.x, self.y)
     self.col:collidesWith(player.col, function()
         player:upgrade()
+        MenuText.new(self.x, self.y, "upgrade", COLOR.WHT, SCREEN.FPS)
         self:kill()
     end)
 

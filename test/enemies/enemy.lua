@@ -1,13 +1,14 @@
 Enemy = {}
 Enemy.__index = Enemy
 
-function Enemy.new(x, y, child)
+function Enemy.new(x, y, child, dropsUpgrade)
     local self = setmetatable({}, Enemy)
 
     self.x = x
     self.y = y
     self.child = child
     self.alive = true
+    self.dropsUpgrade = dropsUpgrade or false
 
     self.col = Collidable.new(self.x, self.y, 8, 8)
 
@@ -94,6 +95,10 @@ function Enemy:kill(killedByPlayer)
     if killedByPlayer and self.child.points ~= nil then
         MenuText.new(self.x, self.y, "+" .. self.child.points, COLOR.WHT, SCREEN.FPS)
         score = score + self.child.points
+    end
+
+    if self.dropsUpgrade and killedByPlayer then
+        add(upgrades, Upgrade.new(self.x, self.y))
     end
 
     self.child:kill()

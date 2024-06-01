@@ -16,7 +16,8 @@ __lua__
 #include ./test/explosion.lua
 #include ./test/enemies/meteor.lua
 #include ./test/enemies/enemy.lua
-#include ./test/enemies/small-ship.lua
+#include ./test/enemies/diver.lua
+#include ./test/enemies/follower.lua
 #include ./test/player.lua
 #include ./test/menus/health.lua
 #include ./test/menus/weapon.lua
