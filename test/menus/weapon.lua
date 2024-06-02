@@ -1,6 +1,6 @@
 MenuWeapon = {}
 MenuWeapon.__index = MenuWeapon
-MenuWeapon.X = SCREEN.WIDTH / 2 - 8
+MenuWeapon.X = SCREEN.WIDTH - 20
 MenuWeapon.Y = SCREEN.HEIGHT
 MenuWeapon.MAX_LVL = 10
 

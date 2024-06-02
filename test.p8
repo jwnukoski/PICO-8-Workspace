@@ -22,15 +22,15 @@ __lua__
 #include ./test/enemies/follower.lua
 #include ./test/enemies/spinner.lua
 #include ./test/player.lua
+#include ./test/menus/completed.lua
 #include ./test/menus/health.lua
 #include ./test/menus/weapon.lua
-#include ./test/menus/time.lua
+#include ./test/menus/score.lua
 #include ./test/menus/text.lua
 #include ./test/levels/action.lua
 #include ./test/levels/level.lua
 #include ./test/levels/one.lua
 #include ./test/levels/two.lua
-#include ./test/levels/three.lua
 #include ./test/main.lua
 
 __gfx__

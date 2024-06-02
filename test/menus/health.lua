@@ -1,6 +1,6 @@
 MenuHealth = {}
 MenuHealth.__index = MenuHealth
-MenuHealth.X = 0
+MenuHealth.X = SCREEN.WIDTH / 2 - 12
 MenuHealth.Y = SCREEN.HEIGHT
 
 -- Constructor

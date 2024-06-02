@@ -64,7 +64,7 @@ function Player:hurtByBullets()
                 if not bullet.alive then
                     return
                 end
-                
+
                 bullet:kill()
                 self:damage()
             end)
@@ -88,25 +88,17 @@ end
 
 function Player:shooting()
     self:shootDelayCount()
-    
-    -- Test upgradeWeapon
-    if btnp(INPUT.O) then
-        self:upgradeWeapon()
-    end
-    
-    
+
     if (not btn(INPUT.X)) or (not self.canShoot) then
         -- if not btn(INPUT.X) and not btn(INPUT.O) then
-            return
+        return
     end
 
-    -- TODO: weapon types
     self:shootWeaponType()
 end
 
 function Player:upgradeWeapon()
     -- Upgrade event. Sets delays.
-
     if self.weapon < 10 then
         self.weapon = self.weapon + 1
         self.shootTimer = 0
@@ -223,7 +215,7 @@ function Player:shootWeaponType()
 
         Bullet.new(self.x + 6, self.y - 4, 4, -4, true)
     end
-    
+
     sfx(1)
 
     self.canShoot = false
@@ -239,6 +231,7 @@ function Player:damage()
     add(EXPLOSIONS, Explosion.new(self.x, self.y, 1, 1))
 
     if self.health == 0 then
+        sfx(4)
         self:kill()
     end
 end
@@ -246,9 +239,6 @@ end
 function Player:kill()
     self.alive = false
     self.col:kill()
-    sfx(4)
-
-    reset()
 end
 
 function Player:reset()

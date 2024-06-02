@@ -9,12 +9,13 @@ UPGRADES = {}
 SCORE = 0
 CUR_LVL = 1
 LVLS = { 
-    LEVEL_ONE,
-    LEVEL_TWO,
-    LEVEL_THREE
+    LEVEL_ONE(),
+    LEVEL_TWO()
 }
+STATE = 0
 
 function _draw()
+    -- Regular game
     if LVLS[CUR_LVL] ~= nil then
         cls(LVLS[CUR_LVL]:getClsColor())
     else
@@ -52,6 +53,7 @@ function _draw()
 
     -- Draw the menu
     rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK) -- keep here? just background for menu
+
     for _, menu in ipairs(MENUS) do
         menu:draw()
     end
@@ -63,7 +65,6 @@ function _update()
     end
 
     PLAYER:update()
-
     if not PLAYER.alive then
         return
     end
@@ -112,8 +113,29 @@ function RESET()
     MENUS = {}
     MenuHealth.new()
     MenuWeapon.new()
-    MenuTime.new()
+    MenuScore.new()
     CHANGE_LVL(1)
+end
+
+function GAME_OVER()
+    STATE = 1
+
+    PLAYER = nil
+    BKG_DTLS = {}
+    ENEMIES = {}
+    COLLIDABLES = {}
+    EXPLOSIONS = {}
+    BULLETS = {}
+    MENUS = {}
+    UPGRADES = {}
+
+    MenuGameOver.new()
+end
+
+function END_GAME()
+    STATE = 2
+    PLAYER:kill()
+    MenuGameCompleted.new()
 end
 
 function CHANGE_LVL(lvl)
