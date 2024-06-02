@@ -234,20 +234,13 @@ function Player:damage()
     if self.health == 0 then
         sfx(4)
         self:kill()
+        RESET()
     end
 end
 
 function Player:kill()
     self.alive = false
     self.col:kill()
-end
-
-function Player:reset()
-    self.health = Player.MAX_HEALTH
-    self.alive = true
-    self.x = 60
-    self.y = 100
-    self.col:setPos(self.x, self.y)
 end
 
 function Player:movement()

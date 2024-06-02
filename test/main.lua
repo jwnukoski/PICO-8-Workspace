@@ -8,14 +8,9 @@ MENUS = {}
 UPGRADES = {}
 SCORE = 0
 CUR_LVL = 1
-LVLS = { 
-    LEVEL_ONE(),
-    LEVEL_TWO()
-}
-STATE = 0
+LVLS = {}
 
 function _draw()
-    -- Regular game
     if LVLS[CUR_LVL] ~= nil then
         cls(LVLS[CUR_LVL]:getClsColor())
     else
@@ -51,9 +46,8 @@ function _draw()
         upgrade:draw()
     end
 
-    -- Draw the menu
-    rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK) -- keep here? just background for menu
-
+    -- Bottom bkg
+    rectfill(0, SCREEN.HEIGHT, SCREEN.WIDTH, SCREEN.HEIGHT + 8, COLOR.BLK)
     for _, menu in ipairs(MENUS) do
         menu:draw()
     end
@@ -66,6 +60,7 @@ function _update()
 
     PLAYER:update()
     if not PLAYER.alive then
+        goto menus_update
         return
     end
 
@@ -94,6 +89,7 @@ function _update()
         upgrade:update()
     end
 
+    ::menus_update::
     for _, menu in ipairs(MENUS) do
         menu:update()
     end
@@ -107,10 +103,28 @@ function _init()
     RESET()
 end
 
-function RESET()
+function RESET(completed)
+    local completed = completed or false
+
+    LVLS = {
+        LEVEL_ONE(),
+        LEVEL_TWO()
+    }
+    MENUS = {}
+    UPGRADES = {}
+    BKG_DTLS = {}
+    COLLIDABLES = {}
+    EXPLOSIONS = {}
+    ENEMIES = {}
+    BULLETS = {}
+
+    if completed then
+        MenuGameCompleted.new()
+        return
+    end
+
     SCORE = 0
     PLAYER = Player.new(SCREEN.WIDTH / 2, SCREEN.HEIGHT - 8)
-    MENUS = {}
     MenuHealth.new()
     MenuWeapon.new()
     MenuScore.new()
@@ -118,8 +132,6 @@ function RESET()
 end
 
 function GAME_OVER()
-    STATE = 1
-
     PLAYER = nil
     BKG_DTLS = {}
     ENEMIES = {}
@@ -128,12 +140,9 @@ function GAME_OVER()
     BULLETS = {}
     MENUS = {}
     UPGRADES = {}
-
-    MenuGameOver.new()
 end
 
 function END_GAME()
-    STATE = 2
     PLAYER:kill()
     MenuGameCompleted.new()
 end

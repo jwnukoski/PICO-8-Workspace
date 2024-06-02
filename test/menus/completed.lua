@@ -4,43 +4,21 @@ MenuGameCompleted.__index = MenuGameCompleted
 -- Constructor
 function MenuGameCompleted.new()
     local self = setmetatable({}, MenuGameCompleted)
-    self.x = x
-    self.y = y
-    self.text = text
-    self.color = color
-    self.time = time or 0
-    self.counter = 0
-    self.alive = true
     add(MENUS, self)
     return self
 end
 
 function MenuGameCompleted:draw()
-    if not self.alive then
-        return
-    end
+    print("Game Completed!", 50, 50, COLOR.GRN)
+    print("Thanks for playing!", 50, 60, COLOR.WHT)
+    print("Press " .. ASCII.KEY_O .. " to restart", 50, 70, COLOR.WHT)
 
-    
+    print("DEVELOPER SITES: jwnukoski.com", 50, 90, COLOR.WHT)
+    print("github.com/jwnukoski", 50, 110, COLOR.WHT)
 end
 
 function MenuGameCompleted:update()
-    if not self.alive then
-        return
+    if (btnp(INPUT.O)) then
+        RESET()
     end
-    
-    if (SCREEN.frameInFPS == 0) then
-        self.counter = self.counter + 1
-        return
-    end
-
-    PLAYER:kill()
-end
-
-function MenuGameCompleted:reset()
-    self.text = ""
-    self.color = COLOR.WHT
-end
-
-function MenuGameCompleted:kill()
-    self.alive = false
 end

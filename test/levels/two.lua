@@ -7,7 +7,6 @@ function LEVEL_TWO()
 
             Action.new(5, function()
                 Meteor.new(38, -8, 1, 1)
-                Meteor.new(70, -8, 1, 1)
                 Meteor.new(102, -8, 1, 1)
 
                 Diver.new(32, -8, 2, 30)
@@ -27,14 +26,14 @@ function LEVEL_TWO()
                 Follower.new(64, -16, 20, 8, true)
             end),
 
-            Action.new(15, function()
-                sfx(7)
+            Action.new(18, function()
                 music(-1, 0, 3)
-                music(3, 0, 3)
+                sfx(7)
                 add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "FINAL WAVE", COLOR.RED, SCREEN.FPS * 3))
             end),
 
-            Action.new(20, function()
+            Action.new(21, function()
+                music(3, 0, 3)
                 Follower.new(64, -16, 80, 0, true)
                 Spinner.new(64, -16, 60, SCREEN.HEIGHT / 3, -1, true)
             end),
@@ -46,7 +45,8 @@ function LEVEL_TWO()
         },
         35,
         function()
-            END_GAME()
+            music(-1)
+            RESET(true)
         end,
         2
     )
