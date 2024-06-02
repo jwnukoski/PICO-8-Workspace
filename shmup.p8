@@ -2,6 +2,8 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 
+-- shmup
+-- by jwnukoski
 #include ./utilities/log.lua
 #include ./utilities/input.lua
 #include ./utilities/color.lua
