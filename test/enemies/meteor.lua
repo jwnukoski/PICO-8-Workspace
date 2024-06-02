@@ -1,7 +1,7 @@
 Meteor = {}
 Meteor.__index = Meteor
 
-function Meteor.new(x, y, health)
+function Meteor.new(x, y, health, speed, large)
     local self = setmetatable({}, Meteor)
     self.parent = Enemy.new(x, y, self)
     self.health = health
@@ -11,12 +11,12 @@ function Meteor.new(x, y, health)
     self.flipX = rnd(2) > 1
     self.flipY = rnd(2) > 1
 
-    self.speed = flr(rnd(3)) + 1
+    self.speed = speed
     self.spriteIndex = 64
     self.spriteSize = 1
 
-    -- Larger
-    if self.speed == 3 then
+    self.large = large or false
+    if self.large then
         self.w = 16
         self.spriteIndex = 65
         self.spriteSize = 2

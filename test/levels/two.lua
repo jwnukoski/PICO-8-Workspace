@@ -6,15 +6,21 @@ function LEVEL_TWO()
             end),
 
             Action.new(5, function()
-                Meteor.new(38, -8, 2)
+                Meteor.new(38, -8, 1, 1)
+                Meteor.new(70, -8, 1, 1)
+                Meteor.new(102, -8, 1, 1)
+
                 Diver.new(32, -8, 2, 30)
                 Diver.new(64, -8, 2, 30, true)
                 Diver.new(96, -8, 2, 30)
             end),
 
             Action.new(7, function()
-                Meteor.new(70, -8, 5)
-                Meteor.new(38, -8, 2)
+                Meteor.new(6, -8, 1, 1)
+                Meteor.new(70, -40, 1, 1)
+
+                Meteor.new(38, -32, 3, 2, true)
+                Meteor.new(102, -16, 3, 1, true)
             end),
 
             Action.new(10, function()
