@@ -2,6 +2,8 @@ function LEVEL_ONE()
     return Level.new(
         {
             Action.new(2, function()
+                music(-1)
+                music(1)
                 add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "LEVEL ONE", COLOR.RED, SCREEN.FPS * 3))
             end),
             
@@ -30,6 +32,8 @@ function LEVEL_ONE()
             end),
 
             Action.new(25, function()
+                sfx(7)
+                music(2)
                 add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "FINAL WAVE", COLOR.RED, SCREEN.FPS * 3))
             end),
 
@@ -51,6 +55,7 @@ function LEVEL_ONE()
         function()
             add(MENUS, MenuText.new(SCREEN.WIDTH / 4, SCREEN.HEIGHT / 3, "LEVEL ONE COMPLETE", COLOR.RED, SCREEN.FPS * 3))
             CHANGE_LVL(2)
+            sfx(11)
         end,
         1
     )
