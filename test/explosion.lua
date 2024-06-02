@@ -9,7 +9,7 @@ function Explosion.new(x, y)
     self.y = y
     self.alive = true
     self.frame = 0
-    sfx(0)
+    -- sfx(0) not enough channels
 
     return self
 end

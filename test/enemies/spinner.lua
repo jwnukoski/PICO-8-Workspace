@@ -40,7 +40,7 @@ function Spinner:update()
     -- Shoot. -1 bypasses leaving.
     if (self.shotsTaken < self.shotsAllowed) or (self.bypassLeaveBehavior) then
         if SCREEN.frameInFPS == 0 or SCREEN.frameInFPS == 5 or SCREEN.FPS == 10 or SCREEN.FPS == 15 or SCREEN.frameInFPS == 20 then
-            sfx(2)
+            -- sfx(2) not enough channels
 
             local x = self.parent.x + 4
             local y = self.parent.y + 4

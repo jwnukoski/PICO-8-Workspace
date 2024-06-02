@@ -28,6 +28,9 @@ function LEVEL_TWO()
             end),
 
             Action.new(15, function()
+                sfx(7)
+                music(-1, 0, 3)
+                music(3, 0, 3)
                 add(MENUS, MenuText.new(SCREEN.WIDTH / 4 + 16, SCREEN.HEIGHT / 3, "FINAL WAVE", COLOR.RED, SCREEN.FPS * 3))
             end),
 

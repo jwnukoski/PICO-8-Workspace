@@ -216,7 +216,7 @@ function Player:shootWeaponType()
         Bullet.new(self.x + 6, self.y - 4, 4, -4, true)
     end
 
-    sfx(1)
+    -- sfx(1) not enough channels
 
     self.canShoot = false
 end
@@ -229,6 +229,7 @@ function Player:damage()
 
     self.health = self.health - 1
     add(EXPLOSIONS, Explosion.new(self.x, self.y, 1, 1))
+    sfx(0)
 
     if self.health == 0 then
         sfx(4)

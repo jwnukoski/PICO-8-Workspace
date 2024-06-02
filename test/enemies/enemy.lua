@@ -97,6 +97,7 @@ function Enemy:kill(killedByPlayer)
     local killedByPlayer = killedByPlayer or false
     
     if killedByPlayer and self.child.points ~= nil then
+        sfx(0)
         MenuText.new(self.x, self.y, "+" .. self.child.points, COLOR.YLW, SCREEN.FPS)
         SCORE = SCORE + self.child.points
     end
