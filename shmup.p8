@@ -2,36 +2,35 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 
--- Run INFO test.p8 to get accurate tokens.
 #include ./utilities/log.lua
 #include ./utilities/input.lua
 #include ./utilities/color.lua
 #include ./utilities/ascii.lua
 #include ./utilities/cam.lua
 #include ./utilities/screen.lua
-#include ./test/collidable.lua
-#include ./test/bullet.lua
-#include ./test/upgrade.lua
-#include ./test/backgrounds/star.lua
-#include ./test/backgrounds/cloud.lua
-#include ./test/backgrounds/static.lua
-#include ./test/explosion.lua
-#include ./test/enemies/meteor.lua
-#include ./test/enemies/enemy.lua
-#include ./test/enemies/diver.lua
-#include ./test/enemies/follower.lua
-#include ./test/enemies/spinner.lua
-#include ./test/player.lua
-#include ./test/menus/completed.lua
-#include ./test/menus/health.lua
-#include ./test/menus/weapon.lua
-#include ./test/menus/score.lua
-#include ./test/menus/text.lua
-#include ./test/levels/action.lua
-#include ./test/levels/level.lua
-#include ./test/levels/one.lua
-#include ./test/levels/two.lua
-#include ./test/main.lua
+#include ./shmup/collidable.lua
+#include ./shmup/bullet.lua
+#include ./shmup/upgrade.lua
+#include ./shmup/backgrounds/star.lua
+#include ./shmup/backgrounds/cloud.lua
+#include ./shmup/backgrounds/static.lua
+#include ./shmup/explosion.lua
+#include ./shmup/enemies/meteor.lua
+#include ./shmup/enemies/enemy.lua
+#include ./shmup/enemies/diver.lua
+#include ./shmup/enemies/follower.lua
+#include ./shmup/enemies/spinner.lua
+#include ./shmup/player.lua
+#include ./shmup/menus/completed.lua
+#include ./shmup/menus/health.lua
+#include ./shmup/menus/weapon.lua
+#include ./shmup/menus/score.lua
+#include ./shmup/menus/text.lua
+#include ./shmup/levels/action.lua
+#include ./shmup/levels/level.lua
+#include ./shmup/levels/one.lua
+#include ./shmup/levels/two.lua
+#include ./shmup/main.lua
 
 __gfx__
 00000000000330000003000000003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
